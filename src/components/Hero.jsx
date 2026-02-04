@@ -57,7 +57,7 @@ const Hero = () => {
                         {/* Placeholder for Profile Image - using initials for now or a reliable placeholder */}
                         <div className="w-full h-full rounded-full bg-gradient-to-br from-[#052e2e] to-[#021a1a] flex items-center justify-center text-4xl font-bold text-[#00ff9d] overflow-hidden">
                             <img
-                                src="public/foto.png"
+                                src="/foto.png"
                                 alt="Juan Dev"
                                 className="w-full h-full object-cover opacity-90 hover:scale-110 transition-transform duration-500"
                             />
