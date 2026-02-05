@@ -26,7 +26,7 @@ const Contact = () => {
                         </div>
                         <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight">Hablemos</h2>
                         <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-                            ¿Tienes un proyecto en mente o simplemente quieres saludar? ¡Contáctame!
+                            ¿Tienes un proyecto en mente? ¡Contáctame!
                         </p>
                     </div>
 
