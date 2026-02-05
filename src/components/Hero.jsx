@@ -21,13 +21,14 @@ const Hero = () => {
                 <div className="flex gap-8 items-center text-sm font-medium text-gray-300">
                     <a href="#work" className="hover:text-[#00ff9d] transition-colors">Proyectos</a>
                     <a href="#about" className="hover:text-[#00ff9d] transition-colors">Sobre mí</a>
-                    <motion.button
+                    <motion.a
+                        href="#contact"
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        className="px-5 py-2 rounded-full border border-[#00ff9d]/30 text-[#00ff9d] hover:bg-[#00ff9d]/10 transition-colors"
+                        className="px-5 py-2 rounded-full border border-[#00ff9d]/30 text-[#00ff9d] hover:bg-[#00ff9d]/10 transition-colors cursor-pointer"
                     >
                         Contacto
-                    </motion.button>
+                    </motion.a>
                 </div>
             </nav>
 
