@@ -6,6 +6,13 @@ import { ArrowRight, Terminal } from 'lucide-react';
 const Hero = () => {
     return (
         <div className="h-auto bg-[#021a1a] text-white font-sans selection:bg-[#00ff9d] selection:text-[#021a1a] overflow-hidden relative">
+            <a
+                href="#contenido-principal"
+                className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-full focus:bg-[#00ff9d] focus:px-4 focus:py-2 focus:text-[#021a1a]"
+            >
+                Saltar al contenido
+            </a>
+
             {/* Background Gradient/Noise (Simulated) */}
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-[#052e2e] via-[#021a1a] to-[#021a1a] opacity-50 z-0 pointer-events-none" />
             <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 z-0 pointer-events-none" />
@@ -19,13 +26,13 @@ const Hero = () => {
                 </div>
 
                 <div className="flex gap-8 items-center text-sm font-medium text-gray-300">
-                    <a href="#work" className="hover:text-[#00ff9d] transition-colors">Proyectos</a>
-                    <a href="#about" className="hover:text-[#00ff9d] transition-colors">Sobre mí</a>
+                    <a href="#work" className="rounded-full px-1 py-1 hover:text-[#00ff9d] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00ff9d] focus-visible:ring-offset-2 focus-visible:ring-offset-[#021a1a]">Proyectos</a>
+                    <a href="#about" className="rounded-full px-1 py-1 hover:text-[#00ff9d] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00ff9d] focus-visible:ring-offset-2 focus-visible:ring-offset-[#021a1a]">Sobre mí</a>
                     <motion.a
                         href="#contact"
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        className="px-5 py-2 rounded-full border border-[#00ff9d]/30 text-[#00ff9d] hover:bg-[#00ff9d]/10 transition-colors cursor-pointer"
+                        className="px-5 py-2 rounded-full border border-[#00ff9d]/30 text-[#00ff9d] hover:bg-[#00ff9d]/10 transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00ff9d] focus-visible:ring-offset-2 focus-visible:ring-offset-[#021a1a]"
                     >
                         Contacto
                     </motion.a>
@@ -33,7 +40,7 @@ const Hero = () => {
             </nav>
 
             {/* Main Content */}
-            <main className="relative z-10 flex flex-col items-center justify-center mt-12 px-4 text-center max-w-4xl mx-auto">
+            <main id="contenido-principal" className="relative z-10 flex flex-col items-center justify-center mt-12 px-4 text-center max-w-4xl mx-auto">
 
                 {/* Badge */}
                 <motion.div
@@ -60,6 +67,9 @@ const Hero = () => {
                             <img
                                 src="/foto.png"
                                 alt="Juan Dev"
+                                width="320"
+                                height="320"
+                                fetchPriority="high"
                                 className="w-full h-full object-cover opacity-90 hover:scale-110 transition-transform duration-500"
                             />
                         </div>
@@ -101,7 +111,7 @@ const Hero = () => {
                         href="#work"
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
-                        className="group relative px-8 py-4 bg-[#00ff9d] text-[#021a1a] font-bold text-lg rounded-full w-full max-w-sm flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(0,255,157,0.3)] hover:shadow-[0_0_30px_rgba(0,255,157,0.5)] transition-shadow"
+                        className="group relative px-8 py-4 bg-[#00ff9d] text-[#021a1a] font-bold text-lg rounded-full w-full max-w-sm flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(0,255,157,0.3)] hover:shadow-[0_0_30px_rgba(0,255,157,0.5)] transition-shadow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00ff9d] focus-visible:ring-offset-2 focus-visible:ring-offset-[#021a1a]"
                     >
                         Explorar proyectos
                         <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />

@@ -2,9 +2,18 @@
 import React from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ExternalLink, Github, ArrowUpRight, X } from 'lucide-react';
+import { X } from 'lucide-react';
 
 const projects = [
+    {
+        title: "Temario express",
+        category: "EdTech / IA Generativa",
+        description: "Web para generar temarios de estudio con IA y compartirlos facilmente con amigos.",
+        longDescription: "Aplicacion web enfocada en estudiantes que permite crear temarios personalizados con ayuda de IA en pocos segundos. Incluye organizacion por temas, estructura clara para estudiar y una opcion simple para compartir cada temario mediante enlace.",
+        image: "/temario-express.png",
+        tags: ["React", "Firebase", "IA", "UX"],
+        link: "https://temario-express.web.app/"
+    },
     {
         title: "Gestor Inmobiliario",
         category: "CRM / Administración",
@@ -27,7 +36,8 @@ const projects = [
         description: "Plataforma de reservas directas para alojamiento vacacional. Gestión de disponibilidad en tiempo real y panel de administración.",
         longDescription: "Portal de reservas directas para propietarios de alquileres temporales. Ofrece una experiencia de usuario fluida con galería de imágenes inmersiva, selector de fechas con bloqueo automático de días no disponibles y pasarela de pagos integrada para señas. El panel administrativo permite visualizar reservas, ingresos y gestionar el bloqueo de fechas por mantenimiento.",
         image: "/vacation_rental_booking_1770145599875.png",
-        tags: ["React", "Firebase", "Stripe", "Date-fns"]
+        tags: ["React", "Firebase", "Stripe", "Date-fns"],
+        link: "https://www.elrefugioaguasverdes.com.ar/"
     },
     {
         title: "El Impostor",
@@ -57,6 +67,19 @@ const projects = [
 
 const Projects = () => {
     const [selectedProject, setSelectedProject] = React.useState(null);
+    const triggerRef = React.useRef(null);
+
+    const handleOpenProject = (project, event) => {
+        triggerRef.current = event.currentTarget;
+        setSelectedProject(project);
+    };
+
+    const handleCloseProject = () => {
+        setSelectedProject(null);
+        window.requestAnimationFrame(() => {
+            triggerRef.current?.focus();
+        });
+    };
 
     return (
         <section id="work" className="py-24 bg-[#021a1a] relative overflow-hidden">
@@ -90,7 +113,7 @@ const Projects = () => {
                             key={index}
                             project={project}
                             index={index}
-                            onClick={() => setSelectedProject(project)}
+                            onClick={(event) => handleOpenProject(project, event)}
                         />
                     ))}
                 </div>
@@ -99,7 +122,7 @@ const Projects = () => {
             {/* Modal Portal */}
             <AnimatePresence>
                 {selectedProject && (
-                    <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />
+                    <ProjectModal project={selectedProject} onClose={handleCloseProject} />
                 )}
             </AnimatePresence>
         </section>
@@ -108,21 +131,27 @@ const Projects = () => {
 
 const ProjectCard = ({ project, index, onClick }) => {
     return (
-        <motion.div
+        <motion.button
+            type="button"
+            aria-haspopup="dialog"
+            aria-label={`Ver detalles de ${project.title}`}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
-            className="group relative rounded-2xl bg-[#032222] border border-[#00ff9d]/10 overflow-hidden hover:border-[#00ff9d]/30 transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,255,157,0.1)] flex flex-col h-full cursor-pointer"
+            className="group relative rounded-2xl bg-[#032222] border border-[#00ff9d]/10 overflow-hidden hover:border-[#00ff9d]/30 transition-[border-color,box-shadow,transform] duration-300 hover:shadow-[0_0_30px_rgba(0,255,157,0.1)] flex flex-col h-full cursor-pointer text-left touch-manipulation focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00ff9d] focus-visible:ring-offset-2 focus-visible:ring-offset-[#021a1a]"
             onClick={onClick}
         >
             {/* Image Container */}
-            <div className="relative h-56 overflow-hidden">
+            <div className="relative h-56 overflow-hidden bg-[#021a1a]">
                 <div className="absolute inset-0 bg-[#021a1a]/20 group-hover:bg-transparent transition-colors z-10 duration-500"></div>
                 <img
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-out"
+                    width="800"
+                    height="560"
+                    loading="lazy"
+                    className="w-full h-full object-contain transform group-hover:scale-105 transition-transform duration-700 ease-out"
                 />
                 {/* Overlay Actions */}
                 <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 flex items-center justify-center gap-4 backdrop-blur-[2px]">
@@ -158,13 +187,62 @@ const ProjectCard = ({ project, index, onClick }) => {
                     )}
                 </div>
             </div>
-        </motion.div>
+        </motion.button>
     );
 };
 
 const ProjectModal = ({ project, onClose }) => {
     // Use createPortal to render the modal outside the current DOM hierarchy (e.g., in body)
     // to avoid z-index and overflow issues.
+    const modalRef = React.useRef(null);
+
+    React.useEffect(() => {
+        if (typeof document === 'undefined') return undefined;
+
+        const previousOverflow = document.body.style.overflow;
+        document.body.style.overflow = 'hidden';
+        modalRef.current?.focus();
+
+        const handleKeyDown = (event) => {
+            if (event.key === 'Escape') {
+                onClose();
+                return;
+            }
+
+            if (event.key !== 'Tab') {
+                return;
+            }
+
+            const focusableElements = modalRef.current?.querySelectorAll(
+                'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+            );
+
+            if (!focusableElements || focusableElements.length === 0) {
+                return;
+            }
+
+            const firstElement = focusableElements[0];
+            const lastElement = focusableElements[focusableElements.length - 1];
+
+            if (event.shiftKey && document.activeElement === firstElement) {
+                event.preventDefault();
+                lastElement.focus();
+            }
+
+            if (!event.shiftKey && document.activeElement === lastElement) {
+                event.preventDefault();
+                firstElement.focus();
+            }
+        };
+
+        document.addEventListener('keydown', handleKeyDown);
+
+        return () => {
+            document.body.style.overflow = previousOverflow;
+            document.removeEventListener('keydown', handleKeyDown);
+        };
+    }, [onClose]);
+
     if (typeof document === 'undefined') return null;
 
     return createPortal(
@@ -186,23 +264,32 @@ const ProjectModal = ({ project, onClose }) => {
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.9, y: 20 }}
                 transition={{ type: "spring", damping: 25, stiffness: 300 }}
-                className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[10000] w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-[#032222] border border-[#00ff9d]/20 rounded-2xl shadow-2xl shadow-[#00ff9d]/10 scrollbar-thin scrollbar-thumb-[#00ff9d]/20 scrollbar-track-transparent"
+                ref={modalRef}
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="project-modal-title"
+                aria-describedby="project-modal-description"
+                tabIndex={-1}
+                className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[10000] w-full max-w-4xl max-h-[90vh] overflow-y-auto overscroll-contain bg-[#032222] border border-[#00ff9d]/20 rounded-2xl shadow-2xl shadow-[#00ff9d]/10 scrollbar-thin scrollbar-thumb-[#00ff9d]/20 scrollbar-track-transparent focus-visible:outline-none"
                 onClick={(e) => e.stopPropagation()}
                 style={{ position: 'fixed', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }} // Explicit styles to ensure centering even with motion
             >
                 <button
                     onClick={onClose}
-                    className="absolute top-4 right-4 z-10 p-2 rounded-full bg-black/50 text-white hover:bg-[#00ff9d] hover:text-[#021a1a] transition-colors"
+                    aria-label={`Cerrar detalles de ${project.title}`}
+                    className="absolute top-4 right-4 z-10 p-2 rounded-full bg-black/50 text-white hover:bg-[#00ff9d] hover:text-[#021a1a] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00ff9d] focus-visible:ring-offset-2 focus-visible:ring-offset-[#032222]"
                 >
                     <X size={24} />
                 </button>
 
                 <div className="grid md:grid-cols-2">
-                    <div className="h-64 md:h-full min-h-[300px] relative">
+                    <div className="h-64 md:h-full min-h-[300px] relative bg-[#021a1a] flex items-center justify-center">
                         <img
                             src={project.image}
                             alt={project.title}
-                            className="absolute inset-0 w-full h-full object-cover"
+                            width="800"
+                            height="900"
+                            className="w-full h-full object-contain"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-[#032222] via-transparent to-transparent md:bg-gradient-to-r md:from-transparent md:to-[#032222]/50"></div>
                     </div>
@@ -212,8 +299,8 @@ const ProjectModal = ({ project, onClose }) => {
                             <span className="text-[#00ff9d] text-sm font-bold tracking-wider uppercase bg-[#00ff9d]/10 px-3 py-1 rounded-full mb-4 inline-block">
                                 {project.category}
                             </span>
-                            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">{project.title}</h2>
-                            <p className="text-gray-300 text-lg leading-relaxed">
+                            <h2 id="project-modal-title" className="text-3xl md:text-4xl font-bold text-white mb-4">{project.title}</h2>
+                            <p id="project-modal-description" className="text-gray-300 text-lg leading-relaxed">
                                 {project.longDescription || project.description}
                             </p>
                         </div>
@@ -228,6 +315,17 @@ const ProjectModal = ({ project, onClose }) => {
                                 ))}
                             </div>
                         </div>
+
+                        {project.link && (
+                            <a
+                                href={project.link}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex w-fit items-center justify-center px-4 py-2 rounded-lg bg-[#00ff9d] text-[#021a1a] font-semibold hover:bg-emerald-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00ff9d] focus-visible:ring-offset-2 focus-visible:ring-offset-[#032222]"
+                            >
+                                Ver proyecto
+                            </a>
+                        )}
 
 
                     </div>

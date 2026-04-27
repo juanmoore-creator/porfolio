@@ -62,7 +62,7 @@ const ContactCard = ({ href, icon, title, value, action }) => (
         target="_blank"
         rel="noopener noreferrer"
         whileHover={{ y: -5 }}
-        className="block p-8 rounded-2xl bg-[#032222] border border-[#00ff9d]/10 hover:border-[#00ff9d]/30 hover:bg-[#052e2e] transition-all group"
+        className="block p-8 rounded-2xl bg-[#032222] border border-[#00ff9d]/10 hover:border-[#00ff9d]/30 hover:bg-[#052e2e] transition-[border-color,background-color,transform] group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00ff9d] focus-visible:ring-offset-2 focus-visible:ring-offset-[#021a1a]"
     >
         <div className="flex flex-col items-center gap-4">
             <div className="p-4 rounded-full bg-[#021a1a] border border-[#00ff9d]/20 group-hover:scale-110 transition-transform duration-300">

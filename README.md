@@ -1,16 +1,60 @@
-# React + Vite
+# Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Portfolio personal desarrollado como single-page application con React, Vite, Tailwind CSS v4 y Framer Motion.
 
-Currently, two official plugins are available:
+## Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- React 19
+- Vite 7
+- Tailwind CSS v4
+- Framer Motion
+- Lucide React
+- ESLint 9
 
-## React Compiler
+## Estructura
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```text
+src/
+	App.jsx
+	main.jsx
+	index.css
+	components/
+		Hero.jsx
+		About.jsx
+		Projects.jsx
+		Contact.jsx
+```
 
-## Expanding the ESLint configuration
+## Secciones
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- Hero: presentación principal, navegación interna y llamada a la acción.
+- About: perfil profesional, enfoque técnico y áreas de valor.
+- Projects: grilla de proyectos destacados con modal de detalle.
+- Contact: accesos directos a WhatsApp y correo.
+
+## Scripts
+
+```bash
+npm install
+npm run dev
+npm run build
+npm run preview
+npm run lint
+```
+
+## Decisiones actuales
+
+- El sitio está construido como landing de una sola página con navegación por anclas.
+- El styling principal se resuelve con utilidades de Tailwind definidas directamente en los componentes.
+- La sección de proyectos es el bloque más complejo y usa `createPortal` para renderizar el modal fuera de la jerarquía principal.
+
+## Pendientes recomendados
+
+- Reemplazar el favicon por uno propio.
+- Agregar metadatos SEO y Open Graph.
+- Mejorar accesibilidad de foco, navegación por teclado y modal.
+- Revisar consistencia de contenido personal y nombres visibles.
+
+## Estado del proyecto
+
+El proyecto no presenta errores de diagnóstico en el workspace al momento de esta documentación.
