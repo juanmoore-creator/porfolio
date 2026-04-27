@@ -26,6 +26,7 @@ const Hero = () => {
                 </div>
 
                 <div className="flex gap-8 items-center text-sm font-medium text-gray-300">
+                    <a href="#services" className="rounded-full px-1 py-1 hover:text-[#00ff9d] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00ff9d] focus-visible:ring-offset-2 focus-visible:ring-offset-[#021a1a]">Servicios</a>
                     <a href="#work" className="rounded-full px-1 py-1 hover:text-[#00ff9d] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00ff9d] focus-visible:ring-offset-2 focus-visible:ring-offset-[#021a1a]">Proyectos</a>
                     <a href="#about" className="rounded-full px-1 py-1 hover:text-[#00ff9d] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00ff9d] focus-visible:ring-offset-2 focus-visible:ring-offset-[#021a1a]">Sobre mí</a>
                     <motion.a
