@@ -6,25 +6,25 @@ const services = [
     {
         icon: <Rocket className="w-6 h-6 text-[#00ff9d]" />,
         title: 'Pack Starter',
-        price: 'Desde USD 350',
-        description: 'Landing profesional para empezar a captar consultas sin perder tiempo en una web gigante.',
-        deliverables: ['Copy base orientado a accion', 'Formulario conectado a WhatsApp o email', 'SEO tecnico inicial'],
-        timeline: '5 a 7 dias'
+        price: 'USD 150',
+        description: 'MVP inicial para validar una idea SaaS y salir rapido al mercado con una version funcional.',
+        deliverables: ['Setup base de frontend y backend', 'Flujo inicial de usuarios y panel simple', 'Base lista para futuras iteraciones'],
+        timeline: '7 a 10 dias'
     },
     {
         icon: <Gauge className="w-6 h-6 text-[#00ff9d]" />,
         title: 'Pack Growth',
-        price: 'Desde USD 650',
-        description: 'Web de negocio con estructura completa para vender mejor, comunicar claro y escalar.',
-        deliverables: ['Sitio multi-seccion responsive', 'Optimización de rendimiento y SEO on-page', 'Integración de analitica y eventos clave'],
-        timeline: '10 a 14 dias'
+        price: 'USD 500',
+        description: 'Desarrollo de CRM a medida para ordenar procesos internos, seguimiento comercial y productividad.',
+        deliverables: ['Módulos de clientes, tareas y estados', 'Dashboard con datos clave para decisiones', 'Roles y permisos basicos por usuario'],
+        timeline: '1 a 2 meses'
     },
     {
         icon: <Wrench className="w-6 h-6 text-[#00ff9d]" />,
-        title: 'Pack Retainer',
-        price: 'USD 180 / mes',
-        description: 'Acompañamiento mensual para iterar tu web, lanzar mejoras y mantener todo bajo control.',
-        deliverables: ['Soporte tecnico y ajustes continuos', 'Mejoras evolutivas de conversion', 'Monitoreo basico de errores y performance'],
+        title: 'Soporte / mantenimiento',
+        price: 'USD 50 / mensual',
+        description: 'Evolución mensual con extensiones y automatizaciones con IA para ahorrar tiempo operativo.',
+        deliverables: ['Integraciones con APIs y herramientas externas', 'Automatizaciones con IA para tareas repetitivas', 'Soporte tecnico y mejoras continuas'],
         timeline: 'Plan mensual'
     }
 ];
@@ -62,10 +62,21 @@ const Services = () => {
                     </h2>
 
                     <p className="text-gray-400 max-w-3xl mx-auto text-lg leading-relaxed">
-                        Trabajo con pymes, marcas personales y negocios de Argentina que necesitan una web rapida,
-                        clara y pensada para convertir visitas en clientes.
+                        Desarrollo soluciones para negocios que necesitan producto digital real: MVPs SaaS,
+                        CRMs personalizados y extensiones con IA para acelerar operaciones.
                     </p>
                 </motion.div>
+
+                <div className="flex flex-wrap justify-center gap-3 mb-10">
+                    {['SaaS MVP', 'CRM a medida', 'Extensiones con IA'].map((tag) => (
+                        <span
+                            key={tag}
+                            className="px-3 py-1 rounded-full border border-[#00ff9d]/20 bg-[#052e2e]/40 text-[#00ff9d] text-xs font-bold tracking-wider uppercase"
+                        >
+                            {tag}
+                        </span>
+                    ))}
+                </div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-7 mb-14">
                     {services.map((service, index) => (
