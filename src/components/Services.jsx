@@ -108,7 +108,7 @@ const processSteps = [
 
 const Services = () => {
     return (
-        <section id="services" className="py-12 md:py-20 bg-[#021a1a] relative overflow-hidden">
+        <section id="services" className="py-12 md:py-20 bg-[#021a1a] relative overflow-hidden scroll-mt-20">
             <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[32rem] h-[32rem] bg-[#00ff9d] rounded-full mix-blend-screen filter blur-[150px] opacity-5"></div>
                 <div className="absolute top-1/4 left-0 w-80 h-80 bg-[#052e2e] rounded-full filter blur-[120px] opacity-20"></div>

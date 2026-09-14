@@ -1,13 +1,16 @@
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Terminal, Menu, X } from 'lucide-react';
+import { ArrowRight, Terminal, Menu, X, MessageCircle } from 'lucide-react';
 
 const navLinks = [
     { href: '#services', label: 'Servicios' },
     { href: '#work', label: 'Proyectos' },
-    { href: '#about', label: 'Sobre mí' }
+    { href: '#about', label: 'Sobre mí' },
+    { href: '#contact', label: 'Contacto' }
 ];
+
+const WHATSAPP_LINK = 'https://wa.me/542216430365?text=Hola%20Juan%2C%20quiero%20consultarte%20por%20un%20proyecto';
 
 const Hero = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -26,24 +29,37 @@ const Hero = () => {
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-[#052e2e] via-[#021a1a] to-[#021a1a] opacity-50 z-0 pointer-events-none" />
             <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 z-0 pointer-events-none" />
 
-            {/* Navigation */}
-            <nav className="relative z-20 flex justify-between items-center px-6 py-5 md:py-6 max-w-7xl mx-auto">
+            {/* Navigation bar: fixed full-width so it stays visible while scrolling the whole page */}
+            <div className="fixed top-0 inset-x-0 z-50 bg-[#021a1a]/80 backdrop-blur-md border-b border-[#00ff9d]/10">
+            <nav className="relative flex justify-between items-center px-6 py-4 max-w-7xl mx-auto">
                 <div className="flex items-center gap-2">
                     <div className="w-10 h-10 rounded-full bg-[#052e2e] border border-[#00ff9d]/20 flex items-center justify-center p-2 text-[#00ff9d]">
                         <Terminal size={20} />
                     </div>
                 </div>
 
-                <button
-                    type="button"
-                    onClick={() => setIsMenuOpen((open) => !open)}
-                    aria-expanded={isMenuOpen}
-                    aria-controls="mobile-menu"
-                    aria-label={isMenuOpen ? 'Cerrar menú' : 'Abrir menú'}
-                    className="md:hidden w-10 h-10 rounded-full border border-[#00ff9d]/30 text-[#00ff9d] flex items-center justify-center hover:bg-[#00ff9d]/10 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00ff9d] focus-visible:ring-offset-2 focus-visible:ring-offset-[#021a1a]"
-                >
-                    {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
-                </button>
+                <div className="flex md:hidden items-center gap-2">
+                    <a
+                        href={WHATSAPP_LINK}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Hablar por WhatsApp"
+                        className="w-10 h-10 rounded-full bg-[#00ff9d] text-[#021a1a] flex items-center justify-center shadow-[0_0_16px_rgba(0,255,157,0.3)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00ff9d] focus-visible:ring-offset-2 focus-visible:ring-offset-[#021a1a]"
+                    >
+                        <MessageCircle size={18} />
+                    </a>
+
+                    <button
+                        type="button"
+                        onClick={() => setIsMenuOpen((open) => !open)}
+                        aria-expanded={isMenuOpen}
+                        aria-controls="mobile-menu"
+                        aria-label={isMenuOpen ? 'Cerrar menú' : 'Abrir menú'}
+                        className="w-10 h-10 rounded-full border border-[#00ff9d]/30 text-[#00ff9d] flex items-center justify-center hover:bg-[#00ff9d]/10 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00ff9d] focus-visible:ring-offset-2 focus-visible:ring-offset-[#021a1a]"
+                    >
+                        {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
+                    </button>
+                </div>
 
                 {isMenuOpen && (
                     <div
@@ -60,13 +76,6 @@ const Hero = () => {
                                 {link.label}
                             </a>
                         ))}
-                        <a
-                            href="#contact"
-                            onClick={closeMenu}
-                            className="mt-2 rounded-full bg-[#00ff9d] text-[#021a1a] font-bold text-center px-4 py-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00ff9d] focus-visible:ring-offset-2 focus-visible:ring-offset-[#032222]"
-                        >
-                            Contacto
-                        </a>
                     </div>
                 )}
 
@@ -81,18 +90,22 @@ const Hero = () => {
                         </a>
                     ))}
                     <motion.a
-                        href="#contact"
+                        href={WHATSAPP_LINK}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        className="px-5 py-2 rounded-full border border-[#00ff9d]/30 text-[#00ff9d] hover:bg-[#00ff9d]/10 transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00ff9d] focus-visible:ring-offset-2 focus-visible:ring-offset-[#021a1a]"
+                        className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-[#00ff9d] text-[#021a1a] font-bold shadow-[0_0_16px_rgba(0,255,157,0.25)] hover:shadow-[0_0_24px_rgba(0,255,157,0.45)] transition-shadow cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00ff9d] focus-visible:ring-offset-2 focus-visible:ring-offset-[#021a1a]"
                     >
-                        Contacto
+                        <MessageCircle className="w-4 h-4" />
+                        Hablemos por WhatsApp
                     </motion.a>
                 </div>
             </nav>
+            </div>
 
             {/* Main Content */}
-            <main id="contenido-principal" className="relative z-10 flex flex-col items-center justify-center mt-8 md:mt-12 pb-12 md:pb-16 px-4 text-center max-w-4xl mx-auto">
+            <main id="contenido-principal" className="relative z-10 flex flex-col items-center justify-center pt-24 md:pt-28 pb-12 md:pb-16 px-4 text-center max-w-4xl mx-auto">
 
                 {/* Badge */}
                 <motion.div

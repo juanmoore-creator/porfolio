@@ -4,7 +4,7 @@ import { Mail, MessageCircle } from 'lucide-react';
 
 const Contact = () => {
     return (
-        <section id="contact" className="py-12 md:py-20 bg-[#021a1a] relative overflow-hidden">
+        <section id="contact" className="py-12 md:py-20 bg-[#021a1a] relative overflow-hidden scroll-mt-20">
             {/* Background Elements */}
             <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
                 <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#00ff9d] rounded-full mix-blend-screen filter blur-[128px] opacity-5"></div>
