@@ -82,7 +82,7 @@ const Projects = () => {
     };
 
     return (
-        <section id="work" className="py-24 bg-[#021a1a] relative overflow-hidden">
+        <section id="work" className="py-12 md:py-20 bg-[#021a1a] relative overflow-hidden">
             {/* Background Elements */}
             <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
                 <div className="absolute top-1/4 left-0 w-96 h-96 bg-[#00ff9d] rounded-full mix-blend-screen filter blur-[128px] opacity-5"></div>
@@ -95,7 +95,7 @@ const Projects = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
-                    className="mb-16 text-center"
+                    className="mb-10 md:mb-16 text-center"
                 >
                     <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[#00ff9d]/20 bg-[#052e2e]/50 backdrop-blur-sm mb-6">
                         <span className="w-1.5 h-1.5 rounded-full bg-[#00ff9d] animate-pulse"></span>
