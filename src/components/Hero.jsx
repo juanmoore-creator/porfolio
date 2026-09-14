@@ -41,7 +41,7 @@ const Hero = () => {
             </nav>
 
             {/* Main Content */}
-            <main id="contenido-principal" className="relative z-10 flex flex-col items-center justify-center mt-12 px-4 text-center max-w-4xl mx-auto">
+            <main id="contenido-principal" className="relative z-10 flex flex-col items-center justify-center mt-12 pb-20 px-4 text-center max-w-4xl mx-auto">
 
                 {/* Badge */}
                 <motion.div
