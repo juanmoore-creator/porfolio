@@ -1,9 +1,18 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Terminal } from 'lucide-react';
+import { ArrowRight, Terminal, Menu, X } from 'lucide-react';
+
+const navLinks = [
+    { href: '#services', label: 'Servicios' },
+    { href: '#work', label: 'Proyectos' },
+    { href: '#about', label: 'Sobre mí' }
+];
 
 const Hero = () => {
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const closeMenu = () => setIsMenuOpen(false);
+
     return (
         <div className="h-auto bg-[#021a1a] text-white font-sans selection:bg-[#00ff9d] selection:text-[#021a1a] overflow-hidden relative">
             <a
@@ -18,17 +27,59 @@ const Hero = () => {
             <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 z-0 pointer-events-none" />
 
             {/* Navigation */}
-            <nav className="relative z-10 flex justify-between items-center px-6 py-6 max-w-7xl mx-auto">
+            <nav className="relative z-20 flex justify-between items-center px-6 py-5 md:py-6 max-w-7xl mx-auto">
                 <div className="flex items-center gap-2">
                     <div className="w-10 h-10 rounded-full bg-[#052e2e] border border-[#00ff9d]/20 flex items-center justify-center p-2 text-[#00ff9d]">
                         <Terminal size={20} />
                     </div>
                 </div>
 
-                <div className="flex gap-8 items-center text-sm font-medium text-gray-300">
-                    <a href="#services" className="rounded-full px-1 py-1 hover:text-[#00ff9d] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00ff9d] focus-visible:ring-offset-2 focus-visible:ring-offset-[#021a1a]">Servicios</a>
-                    <a href="#work" className="rounded-full px-1 py-1 hover:text-[#00ff9d] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00ff9d] focus-visible:ring-offset-2 focus-visible:ring-offset-[#021a1a]">Proyectos</a>
-                    <a href="#about" className="rounded-full px-1 py-1 hover:text-[#00ff9d] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00ff9d] focus-visible:ring-offset-2 focus-visible:ring-offset-[#021a1a]">Sobre mí</a>
+                <button
+                    type="button"
+                    onClick={() => setIsMenuOpen((open) => !open)}
+                    aria-expanded={isMenuOpen}
+                    aria-controls="mobile-menu"
+                    aria-label={isMenuOpen ? 'Cerrar menú' : 'Abrir menú'}
+                    className="md:hidden w-10 h-10 rounded-full border border-[#00ff9d]/30 text-[#00ff9d] flex items-center justify-center hover:bg-[#00ff9d]/10 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00ff9d] focus-visible:ring-offset-2 focus-visible:ring-offset-[#021a1a]"
+                >
+                    {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
+                </button>
+
+                {isMenuOpen && (
+                    <div
+                        id="mobile-menu"
+                        className="md:hidden absolute top-full left-4 right-4 rounded-2xl bg-[#032222] border border-[#00ff9d]/20 shadow-[0_10px_40px_rgba(0,0,0,0.5)] p-3 flex flex-col text-base font-medium text-gray-200"
+                    >
+                        {navLinks.map((link) => (
+                            <a
+                                key={link.href}
+                                href={link.href}
+                                onClick={closeMenu}
+                                className="rounded-xl px-4 py-3 hover:bg-[#052e2e] hover:text-[#00ff9d] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00ff9d]"
+                            >
+                                {link.label}
+                            </a>
+                        ))}
+                        <a
+                            href="#contact"
+                            onClick={closeMenu}
+                            className="mt-2 rounded-full bg-[#00ff9d] text-[#021a1a] font-bold text-center px-4 py-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00ff9d] focus-visible:ring-offset-2 focus-visible:ring-offset-[#032222]"
+                        >
+                            Contacto
+                        </a>
+                    </div>
+                )}
+
+                <div className="hidden md:flex gap-8 items-center text-sm font-medium text-gray-300">
+                    {navLinks.map((link) => (
+                        <a
+                            key={link.href}
+                            href={link.href}
+                            className="rounded-full px-1 py-1 hover:text-[#00ff9d] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00ff9d] focus-visible:ring-offset-2 focus-visible:ring-offset-[#021a1a]"
+                        >
+                            {link.label}
+                        </a>
+                    ))}
                     <motion.a
                         href="#contact"
                         whileHover={{ scale: 1.05 }}
@@ -41,7 +92,7 @@ const Hero = () => {
             </nav>
 
             {/* Main Content */}
-            <main id="contenido-principal" className="relative z-10 flex flex-col items-center justify-center mt-12 pb-20 px-4 text-center max-w-4xl mx-auto">
+            <main id="contenido-principal" className="relative z-10 flex flex-col items-center justify-center mt-8 md:mt-12 pb-12 md:pb-16 px-4 text-center max-w-4xl mx-auto">
 
                 {/* Badge */}
                 <motion.div

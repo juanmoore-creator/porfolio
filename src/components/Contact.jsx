@@ -4,7 +4,7 @@ import { Mail, MessageCircle } from 'lucide-react';
 
 const Contact = () => {
     return (
-        <section id="contact" className="py-24 bg-[#021a1a] relative overflow-hidden">
+        <section id="contact" className="py-12 md:py-20 bg-[#021a1a] relative overflow-hidden">
             {/* Background Elements */}
             <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
                 <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#00ff9d] rounded-full mix-blend-screen filter blur-[128px] opacity-5"></div>
@@ -19,7 +19,7 @@ const Contact = () => {
                     className="max-w-4xl mx-auto text-center"
                 >
                     {/* Header */}
-                    <div className="mb-16">
+                    <div className="mb-10 md:mb-16">
                         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[#00ff9d]/20 bg-[#052e2e]/50 backdrop-blur-sm mb-6">
                             <span className="w-1.5 h-1.5 rounded-full bg-[#00ff9d] animate-pulse"></span>
                             <span className="text-[#00ff9d] text-xs font-bold tracking-widest uppercase">Contacto</span>

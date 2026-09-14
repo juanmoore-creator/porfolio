@@ -108,7 +108,7 @@ const processSteps = [
 
 const Services = () => {
     return (
-        <section id="services" className="py-24 bg-[#021a1a] relative overflow-hidden">
+        <section id="services" className="py-12 md:py-20 bg-[#021a1a] relative overflow-hidden">
             <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[32rem] h-[32rem] bg-[#00ff9d] rounded-full mix-blend-screen filter blur-[150px] opacity-5"></div>
                 <div className="absolute top-1/4 left-0 w-80 h-80 bg-[#052e2e] rounded-full filter blur-[120px] opacity-20"></div>
@@ -120,11 +120,11 @@ const Services = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
-                    className="text-center mb-14"
+                    className="text-center mb-10 md:mb-14"
                 >
                     <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[#00ff9d]/20 bg-[#052e2e]/50 backdrop-blur-sm mb-6">
                         <span className="w-1.5 h-1.5 rounded-full bg-[#00ff9d] animate-pulse"></span>
-                        <span className="text-[#00ff9d] text-xs font-bold tracking-widest uppercase">Servicios para pymes y emprendedores</span>
+                        <span className="text-[#00ff9d] text-xs font-bold tracking-widest uppercase">Pymes y emprendedores</span>
                     </div>
 
                     <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight">
