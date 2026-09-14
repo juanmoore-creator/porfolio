@@ -4,7 +4,7 @@ import { User, Code, Database, Brain } from 'lucide-react';
 
 const About = () => {
     return (
-        <section id="about" className="py-12 md:py-20 bg-[#021a1a] relative overflow-hidden">
+        <section id="about" className="py-12 md:py-20 bg-[#021a1a] relative overflow-hidden scroll-mt-20">
             {/* Background Elements */}
             <div className="absolute top-0 right-0 w-full h-full overflow-hidden pointer-events-none">
                 <div className="absolute top-1/3 right-0 w-96 h-96 bg-[#00ff9d] rounded-full mix-blend-screen filter blur-[128px] opacity-5"></div>
