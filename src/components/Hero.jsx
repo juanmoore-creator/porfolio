@@ -1,8 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, MessageCircle, Layers } from 'lucide-react';
+import { ArrowRight, MessageCircle, Layers, Menu, X } from 'lucide-react';
+
+const navLinks = [
+    { href: '#services', label: 'Servicios' },
+    { href: '#work', label: 'Proyectos' },
+    { href: '#about', label: 'Sobre mí' },
+    { href: '#contact', label: 'Contacto' }
+];
+
+const WHATSAPP_LINK = 'https://wa.me/542216430365?text=Hola%20Juan,%20vi%20tu%20portfolio%20y%20me%20gustar%C3%ADa%20consultar%20por%20una%20soluci%C3%B3n%20para%20mi%20negocio';
 
 const Hero = () => {
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const closeMenu = () => setIsMenuOpen(false);
+
     return (
         <div className="h-auto bg-[#0b1329] text-white font-sans selection:bg-blue-600 selection:text-white overflow-hidden relative">
             <a
@@ -16,34 +28,89 @@ const Hero = () => {
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-[#111c38] via-[#0b1329] to-[#0b1329] opacity-50 z-0 pointer-events-none" />
             <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 z-0 pointer-events-none" />
 
-            {/* Navigation */}
-            <nav className="relative z-10 flex justify-between items-center px-6 py-6 max-w-7xl mx-auto">
-                <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-[#111c38] border border-blue-500/20 flex items-center justify-center p-2 text-blue-400">
-                        <Layers size={20} />
+            {/* Sticky Navigation bar */}
+            <div className="fixed top-0 inset-x-0 z-50 bg-[#0b1329]/80 backdrop-blur-md border-b border-blue-500/10">
+                <nav className="relative flex justify-between items-center px-6 py-4 max-w-7xl mx-auto">
+                    <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-full bg-[#111c38] border border-blue-500/20 flex items-center justify-center p-2 text-blue-400">
+                            <Layers size={20} />
+                        </div>
+                        <span className="font-semibold tracking-tight text-slate-200 hidden sm:inline">Juan Moore</span>
                     </div>
-                    <span className="font-semibold tracking-tight text-slate-200 hidden sm:inline">Juan Moore</span>
-                </div>
 
-                <div className="flex gap-6 sm:gap-8 items-center text-sm font-medium text-gray-300">
-                    <a href="#services" className="rounded-full px-1 py-1 hover:text-blue-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b1329]">Servicios</a>
-                    <a href="#work" className="rounded-full px-1 py-1 hover:text-blue-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b1329]">Proyectos</a>
-                    <a href="#about" className="rounded-full px-1 py-1 hover:text-blue-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b1329]">Sobre mí</a>
-                    <motion.a
-                        href="#contact"
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        className="px-5 py-2 rounded-full border border-blue-500/30 text-blue-400 hover:bg-blue-500/10 transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b1329]"
-                    >
-                        Contacto
-                    </motion.a>
-                </div>
-            </nav>
+                    {/* Mobile menu button and persistent WhatsApp */}
+                    <div className="flex items-center gap-3 md:hidden">
+                        <a
+                            href={WHATSAPP_LINK}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="Contactar por WhatsApp"
+                            className="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center shadow-[0_0_12px_rgba(59,130,246,0.3)] hover:bg-blue-500 transition-colors"
+                        >
+                            <MessageCircle size={18} />
+                        </a>
+
+                        <button
+                            type="button"
+                            onClick={() => setIsMenuOpen((open) => !open)}
+                            aria-expanded={isMenuOpen}
+                            aria-controls="mobile-menu"
+                            aria-label={isMenuOpen ? 'Cerrar menú' : 'Abrir menú'}
+                            className="w-10 h-10 rounded-full border border-blue-500/30 text-blue-400 flex items-center justify-center hover:bg-blue-500/10 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b1329]"
+                        >
+                            {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
+                        </button>
+                    </div>
+
+                    {/* Mobile dropdown */}
+                    {isMenuOpen && (
+                        <div
+                            id="mobile-menu"
+                            className="md:hidden absolute top-full left-4 right-4 rounded-2xl bg-[#111c38] border border-blue-500/20 shadow-[0_10px_40px_rgba(0,0,0,0.5)] p-3 flex flex-col text-base font-medium text-gray-200"
+                        >
+                            {navLinks.map((link) => (
+                                <a
+                                    key={link.href}
+                                    href={link.href}
+                                    onClick={closeMenu}
+                                    className="rounded-xl px-4 py-3 hover:bg-[#162447] hover:text-blue-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+                                >
+                                    {link.label}
+                                </a>
+                            ))}
+                        </div>
+                    )}
+
+                    {/* Desktop nav links */}
+                    <div className="hidden md:flex gap-8 items-center text-sm font-medium text-gray-300">
+                        {navLinks.map((link) => (
+                            <a
+                                key={link.href}
+                                href={link.href}
+                                className="rounded-full px-1 py-1 hover:text-blue-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b1329]"
+                            >
+                                {link.label}
+                            </a>
+                        ))}
+                        <motion.a
+                            href={WHATSAPP_LINK}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-blue-600 text-white font-semibold shadow-[0_0_16px_rgba(59,130,246,0.25)] hover:bg-blue-500 hover:shadow-[0_0_24px_rgba(59,130,246,0.45)] transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b1329]"
+                        >
+                            <MessageCircle className="w-4 h-4" />
+                            Consultar WhatsApp
+                        </motion.a>
+                    </div>
+                </nav>
+            </div>
 
             {/* Main Content */}
-            <main id="contenido-principal" className="relative z-10 flex flex-col items-center justify-center mt-10 md:mt-14 px-4 text-center max-w-4xl mx-auto">
+            <main id="contenido-principal" className="relative z-10 flex flex-col items-center justify-center pt-28 md:pt-36 pb-16 px-4 text-center max-w-4xl mx-auto">
 
-                {/* Status */}
+                {/* Status Indicator */}
                 <motion.div
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -110,11 +177,11 @@ const Hero = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.5 }}
-                    className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full max-w-md mx-auto mb-16"
+                    className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full max-w-md mx-auto"
                 >
                     {/* Primary CTA: WhatsApp direct */}
                     <motion.a
-                        href="https://wa.me/542216430365?text=Hola%20Juan,%20vi%20tu%20portfolio%20y%20me%20gustar%C3%ADa%20consultar%20por%20una%20soluci%C3%B3n%20para%20mi%20negocio"
+                        href={WHATSAPP_LINK}
                         target="_blank"
                         rel="noopener noreferrer"
                         whileHover={{ scale: 1.02 }}
