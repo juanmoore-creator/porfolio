@@ -1,13 +1,13 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { User, Code, Database, Brain } from 'lucide-react';
+import { Briefcase, LineChart, ShieldCheck } from 'lucide-react';
 
 const About = () => {
     return (
-        <section id="about" className="py-24 bg-[#021a1a] relative overflow-hidden">
+        <section id="about" className="py-24 bg-[#0b1329] relative overflow-hidden">
             {/* Background Elements */}
             <div className="absolute top-0 right-0 w-full h-full overflow-hidden pointer-events-none">
-                <div className="absolute top-1/3 right-0 w-96 h-96 bg-[#00ff9d] rounded-full mix-blend-screen filter blur-[128px] opacity-5"></div>
+                <div className="absolute top-1/3 right-0 w-96 h-96 bg-blue-500 rounded-full mix-blend-screen filter blur-[128px] opacity-5"></div>
             </div>
 
             <div className="max-w-7xl mx-auto px-6 relative z-10">
@@ -20,43 +20,42 @@ const About = () => {
                 >
                     {/* Header */}
                     <div className="text-center mb-16">
-                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[#00ff9d]/20 bg-[#052e2e]/50 backdrop-blur-sm mb-6">
-                            <span className="w-1.5 h-1.5 rounded-full bg-[#00ff9d] animate-pulse"></span>
-                            <span className="text-[#00ff9d] text-xs font-bold tracking-widest uppercase">Perfil Profesional</span>
-                        </div>
-                        <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight">Sobre <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00ff9d] to-emerald-600">Mí</span></h2>
+                        <p className="text-blue-400 font-mono text-xs uppercase tracking-widest font-semibold mb-3">// 03 · SOBRE MÍ</p>
+                        <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight">
+                            Sobre <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-blue-500">Mí</span>
+                        </h2>
                     </div>
 
                     <div className="grid md:grid-cols-2 gap-12 items-center">
                         {/* Text Content */}
-                        <div className="space-y-6 text-gray-400 text-lg leading-relaxed">
+                        <div className="space-y-6 text-gray-300 text-base sm:text-lg leading-relaxed">
                             <p>
-                                <span className="text-white font-medium">Soy un Desarrollador Web</span> enfocado en construir herramientas que aporten valor real. Actualmente, complemento mi experiencia técnica cursando la licenciatura en <span className="text-[#00ff9d]">Ciencia de Datos en Organizaciones</span> en la Universidad Nacional de La Plata (UNLP).
+                                <span className="text-white font-semibold">No desarrollo webs de adorno;</span> construyo herramientas digitales pensadas para la rentabilidad, la fidelización y el orden operativo de tu negocio.
                             </p>
                             <p>
-                                Esta formación me permite abordar el desarrollo no solo desde la escritura de código, sino desde la arquitectura de la información y la optimización de procesos.
+                                Combino el desarrollo de software con mi formación en <span className="text-blue-400 font-medium">Ciencia de Datos en Organizaciones (UNLP)</span>. Esto me permite entender la estructura de tu negocio más allá del código: optimizar tus procesos, eliminar tareas repetitivas y ayudarte a tomar decisiones con números claros.
                             </p>
                             <p>
-                                Disfruto creando soluciones donde la lógica de negocio y la experiencia de usuario se encuentran, desde sistemas de gestión hasta visualización de datos en tiempo real.
+                                Trabajo con dueños de comercios y pymes hablando su mismo idioma: sin tecnicismos innecesarios, con presupuestos cerrados y un compromiso absoluto con los resultados de cada entrega.
                             </p>
                         </div>
 
                         {/* Visual/Stats/Cards */}
-                        <div className="grid grid-cols-1 gap-6">
+                        <div className="grid grid-cols-1 gap-5">
                             <FeatureCard
-                                icon={<Code className="w-6 h-6 text-[#00ff9d]" />}
-                                title="Desarrollo Web"
-                                description="Construcción de herramientas y plataformas digitales de alto valor."
+                                icon={<Briefcase className="w-6 h-6 text-blue-400" />}
+                                title="Foco en el Negocio"
+                                description="Soluciones pensadas para generar ventas directas, retener clientes y ahorrar tiempo operativo."
                             />
                             <FeatureCard
-                                icon={<Database className="w-6 h-6 text-[#00ff9d]" />}
-                                title="Ciencia de Datos"
-                                description="Arquitectura de información y optimización basada en datos."
+                                icon={<LineChart className="w-6 h-6 text-blue-400" />}
+                                title="Criterio de Datos (UNLP)"
+                                description="Estructura de información sólida para ordenar tu operación y entender qué funciona en tu local."
                             />
                             <FeatureCard
-                                icon={<Brain className="w-6 h-6 text-[#00ff9d]" />}
-                                title="Lógica de Negocio"
-                                description="Soluciones estratégicas que unen tecnología y objetivos comerciales."
+                                icon={<ShieldCheck className="w-6 h-6 text-blue-400" />}
+                                title="Claridad & Acompañamiento"
+                                description="Comunicación directa y transparente, plazos de entrega realistas y soporte post-implementación."
                             />
                         </div>
                     </div>
@@ -70,14 +69,14 @@ const About = () => {
 const FeatureCard = ({ icon, title, description }) => (
     <motion.div
         whileHover={{ x: 5 }}
-        className="p-4 rounded-xl bg-[#032222] border border-[#00ff9d]/10 hover:border-[#00ff9d]/30 transition-colors flex items-start gap-4"
+        className="p-5 rounded-xl bg-[#111c38] border border-blue-500/15 hover:border-blue-500/35 transition-[border-color,transform] flex items-start gap-4"
     >
-        <div className="p-2 rounded-lg bg-[#052e2e] border border-[#00ff9d]/20">
+        <div className="p-2.5 rounded-lg bg-[#162447] border border-blue-500/25 shrink-0">
             {icon}
         </div>
         <div>
-            <h4 className="text-white font-bold mb-1">{title}</h4>
-            <p className="text-sm text-gray-400">{description}</p>
+            <h4 className="text-white font-bold mb-1 text-base">{title}</h4>
+            <p className="text-sm text-gray-300 leading-relaxed">{description}</p>
         </div>
     </motion.div>
 );
