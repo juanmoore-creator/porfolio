@@ -17,20 +17,28 @@ Portfolio personal desarrollado como single-page application con React, Vite, Ta
 src/
 	App.jsx
 	main.jsx
-	index.css
+	index.css          # tokens de diseño (@theme) y estilos globales
+	constants.js       # WhatsApp, email, links de navegación
 	components/
 		Hero.jsx
-		About.jsx
 		Projects.jsx
+		Services.jsx
+		About.jsx
 		Contact.jsx
+		Footer.jsx
+		ui/              # Button, SectionHeader, Reveal, Tag, BrowserFrame
+public/
+	projects/          # capturas de proyectos en WebP
+	og.png             # imagen para redes (1200x630)
 ```
 
 ## Secciones
 
-- Hero: presentación principal, navegación interna y llamada a la acción.
-- About: perfil profesional, enfoque técnico y áreas de valor.
-- Projects: grilla de proyectos destacados con modal de detalle.
-- Contact: accesos directos a WhatsApp y correo.
+- Hero: propuesta de valor, captura de un proyecto real y sitios en producción.
+- Projects: casos destacados (desafío y solución) y otros desarrollos, con modal de detalle.
+- Services: servicios con precio, formas de pago y proceso de trabajo.
+- About: perfil, formación y forma de trabajo.
+- Contact y Footer: WhatsApp, email y links.
 
 ## Scripts
 
@@ -42,19 +50,14 @@ npm run preview
 npm run lint
 ```
 
+## Sistema de diseño
+
+- Colores, fuentes y radios se definen como tokens en `src/index.css` (`@theme` de Tailwind 4) y se usan como clases: `bg-ink`, `bg-surface`, `border-line`, `text-fg`, `text-muted`, `bg-action`, `text-signal`.
+- Cada color tiene un rol: el azul (`action`) es solo para lo que se puede tocar y el ámbar (`signal`) para resultados y sitios en vivo.
+- Tipografías autoalojadas con Fontsource: Bricolage Grotesque (títulos), Figtree (texto) y JetBrains Mono (cifras, plazos y etiquetas).
+- Las animaciones de entrada usan siempre el componente `Reveal`.
+
 ## Decisiones actuales
 
 - El sitio está construido como landing de una sola página con navegación por anclas.
-- El styling principal se resuelve con utilidades de Tailwind definidas directamente en los componentes.
-- La sección de proyectos es el bloque más complejo y usa `createPortal` para renderizar el modal fuera de la jerarquía principal.
-
-## Pendientes recomendados
-
-- Reemplazar el favicon por uno propio.
-- Agregar metadatos SEO y Open Graph.
-- Mejorar accesibilidad de foco, navegación por teclado y modal.
-- Revisar consistencia de contenido personal y nombres visibles.
-
-## Estado del proyecto
-
-El proyecto no presenta errores de diagnóstico en el workspace al momento de esta documentación.
+- La sección de proyectos usa `createPortal` para renderizar el modal fuera de la jerarquía principal.
