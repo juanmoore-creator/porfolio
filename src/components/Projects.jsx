@@ -40,6 +40,22 @@ const featuredProjects = [
         link: 'https://tasando.com.ar',
         linkLabel: 'tasando.com.ar',
         longDescription: 'Herramienta profesional desarrollada para martilleros, inmobiliarias y agentes que automatiza el proceso de tasación mediante análisis comparativo de mercado (ACM) e inteligencia artificial. Integra búsqueda cruzada de propiedades comparables en portales líderes, cálculo automático de valor por metro cuadrado ajustado por coeficientes, y generación de informes ejecutivos en PDF de alto impacto visual listos para presentar al cliente.'
+    },
+    {
+        id: 'el-refugio',
+        title: 'El Refugio',
+        subtitle: 'Reservas directas para alquiler temporal',
+        category: 'Reservas directas',
+        description: 'Plataforma de reservas directas para alojamiento vacacional. Gestión de disponibilidad en tiempo real y panel de administración.',
+        challenge: 'Reservas coordinadas a mano con cada huésped: consultar fechas libres, confirmar disponibilidad y cobrar señas por separado.',
+        solution: 'Web de reservas directas con galería de imágenes, selector de fechas que bloquea automáticamente los días ocupados, pago de señas online y panel para gestionar reservas e ingresos.',
+        tags: ['Reservas directas', 'Calendario dinámico', 'Pagos online', 'Panel admin'],
+        image: '/projects/el-refugio.webp',
+        width: 1400,
+        height: 674,
+        link: 'https://www.elrefugioaguasverdes.com.ar/',
+        linkLabel: 'elrefugioaguasverdes.com.ar',
+        longDescription: 'Portal de reservas directas para propietarios de alquileres temporales. Ofrece una experiencia de usuario fluida con galería de imágenes inmersiva, selector de fechas con bloqueo automático de días no disponibles y pasarela de pagos integrada para señas. El panel administrativo permite visualizar reservas, ingresos y gestionar el bloqueo de fechas por mantenimiento.'
     }
 ];
 
@@ -64,18 +80,6 @@ const secondaryProjects = [
         width: 1248,
         height: 831,
         tags: ['CRM a medida', 'Gestión de clientes', 'Calendario', 'Reportes PDF']
-    },
-    {
-        title: 'Web de alquiler temporal',
-        category: 'Reservas directas',
-        description: 'Plataforma de reservas directas para alojamiento vacacional. Gestión de disponibilidad en tiempo real y panel de administración.',
-        longDescription: 'Portal de reservas directas para propietarios de alquileres temporales. Ofrece una experiencia de usuario fluida con galería de imágenes inmersiva, selector de fechas con bloqueo automático de días no disponibles y pasarela de pagos integrada para señas. El panel administrativo permite visualizar reservas, ingresos y gestionar el bloqueo de fechas por mantenimiento.',
-        image: '/projects/el-refugio.webp',
-        width: 1400,
-        height: 674,
-        tags: ['Reservas directas', 'Calendario dinámico', 'Pagos online', 'Panel admin'],
-        link: 'https://www.elrefugioaguasverdes.com.ar/',
-        linkLabel: 'elrefugioaguasverdes.com.ar'
     },
     {
         title: 'BusApp',
@@ -144,11 +148,11 @@ const Projects = () => {
                     <Reveal className="mb-10 flex flex-col md:flex-row md:items-end justify-between gap-4">
                         <h3 className="text-2xl md:text-3xl font-bold tracking-tight text-fg">Otros desarrollos</h3>
                         <p className="text-muted max-w-md">
-                            Herramientas para procesos comerciales, reservas directas y logística.
+                            Herramientas para procesos comerciales, gastronomía y logística.
                         </p>
                     </Reveal>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
                         {secondaryProjects.map((project, index) => (
                             <SecondaryCard
                                 key={project.title}
