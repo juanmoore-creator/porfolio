@@ -1,20 +1,62 @@
 @import "tailwindcss";
+@import "@fontsource-variable/bricolage-grotesque";
+@import "@fontsource-variable/figtree";
+@import "@fontsource/jetbrains-mono/400.css";
+@import "@fontsource/jetbrains-mono/500.css";
+
+/*
+ * Design tokens. Each color has one role:
+ * - ink / surface / line: backgrounds and borders
+ * - fg / muted: text
+ * - action: only things you can click (buttons, links)
+ * - signal: results and live status, used sparingly
+ */
+@theme {
+  --color-ink: #0b1329;
+  --color-surface: #121c36;
+  --color-surface-2: #182446;
+  --color-line: #24304f;
+  --color-fg: #e8ecf6;
+  --color-muted: #9aa6c2;
+  --color-action: #2563eb;
+  --color-action-hover: #3b82f6;
+  --color-link: #7aa7ff;
+  --color-signal: #f5b544;
+
+  --font-display: "Bricolage Grotesque Variable", "Avenir Next", system-ui, sans-serif;
+  --font-sans: "Figtree Variable", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
 
 :root {
   color-scheme: dark;
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   scroll-behavior: smooth;
 }
 
 html {
-  background: #0b1329;
+  background: var(--color-ink);
 }
 
 body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-  background: #0b1329;
+  background: var(--color-ink);
+  color: var(--color-fg);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  text-wrap: balance;
+}
+
+::selection {
+  background: var(--color-action);
+  color: #fff;
 }
 
 a,
@@ -23,13 +65,14 @@ button {
 }
 
 a:focus-visible,
-button:focus-visible {
-  outline: 2px solid #3b82f6;
+button:focus-visible,
+summary:focus-visible {
+  outline: 2px solid var(--color-action-hover);
   outline-offset: 3px;
 }
 
 section[id] {
-  scroll-margin-top: 6rem;
+  scroll-margin-top: 5rem;
 }
 
 @media (prefers-reduced-motion: reduce) {

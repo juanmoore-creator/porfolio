@@ -1,207 +1,185 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, MessageCircle, Layers, Menu, X } from 'lucide-react';
+import { ArrowRight, MessageCircle, Menu, X, ExternalLink } from 'lucide-react';
+import Button from './ui/Button';
+import BrowserFrame from './ui/BrowserFrame';
+import { DEFAULT_WHATSAPP_LINK, navLinks } from '../constants';
 
-const navLinks = [
-    { href: '#services', label: 'Servicios' },
-    { href: '#work', label: 'Proyectos' },
-    { href: '#about', label: 'Sobre mí' },
-    { href: '#contact', label: 'Contacto' }
+const liveSites = [
+    { label: 'tasando.com.ar', href: 'https://tasando.com.ar' },
+    { label: 'elrefugioaguasverdes.com.ar', href: 'https://www.elrefugioaguasverdes.com.ar/' }
 ];
 
-const WHATSAPP_LINK = 'https://wa.me/542216430365?text=Hola%20Juan,%20vi%20tu%20portfolio%20y%20me%20gustar%C3%ADa%20consultar%20por%20una%20soluci%C3%B3n%20para%20mi%20negocio';
+const fadeUp = (delay) => ({
+    initial: { opacity: 0, y: 12 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.5, ease: 'easeOut', delay }
+});
 
 const Hero = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const closeMenu = () => setIsMenuOpen(false);
 
     return (
-        <div className="h-auto bg-[#0b1329] text-white font-sans selection:bg-blue-600 selection:text-white overflow-hidden relative">
+        <div className="relative bg-ink text-fg">
             <a
                 href="#contenido-principal"
-                className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-full focus:bg-blue-600 focus:px-4 focus:py-2 focus:text-white"
+                className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:rounded-lg focus:bg-action focus:px-4 focus:py-2 focus:text-white"
             >
                 Saltar al contenido
             </a>
 
-            {/* Background Gradient/Noise (Simulated) */}
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-[#111c38] via-[#0b1329] to-[#0b1329] opacity-50 z-0 pointer-events-none" />
-            <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 z-0 pointer-events-none" />
+            {/* Sticky navigation */}
+            <div className="fixed top-0 inset-x-0 z-50 bg-ink/85 backdrop-blur-md border-b border-line/70">
+                <nav aria-label="Principal" className="relative flex justify-between items-center px-5 sm:px-6 py-3.5 max-w-6xl mx-auto">
+                    <a href="#contenido-principal" className="flex items-center gap-3 rounded-lg">
+                        <span className="w-9 h-9 rounded-lg bg-fg text-ink grid place-items-center font-display font-extrabold text-sm tracking-tight">
+                            JM
+                        </span>
+                        <span className="font-display font-bold tracking-tight text-fg">Juan Moore</span>
+                    </a>
 
-            {/* Sticky Navigation bar */}
-            <div className="fixed top-0 inset-x-0 z-50 bg-[#0b1329]/80 backdrop-blur-md border-b border-blue-500/10">
-                <nav className="relative flex justify-between items-center px-6 py-4 max-w-7xl mx-auto">
-                    <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-full bg-[#111c38] border border-blue-500/20 flex items-center justify-center p-2 text-blue-400">
-                            <Layers size={20} />
-                        </div>
-                        <span className="font-semibold tracking-tight text-slate-200 hidden sm:inline">Juan Moore</span>
+                    <div className="hidden md:flex gap-8 items-center text-sm font-medium text-muted">
+                        {navLinks.map((link) => (
+                            <a key={link.href} href={link.href} className="rounded hover:text-fg transition-colors">
+                                {link.label}
+                            </a>
+                        ))}
+                        <Button href={DEFAULT_WHATSAPP_LINK} external className="px-4 py-2.5">
+                            <MessageCircle className="w-4 h-4" />
+                            WhatsApp
+                        </Button>
                     </div>
 
-                    {/* Mobile menu button and persistent WhatsApp */}
-                    <div className="flex items-center gap-3 md:hidden">
+                    <div className="flex items-center gap-2 md:hidden">
                         <a
-                            href={WHATSAPP_LINK}
+                            href={DEFAULT_WHATSAPP_LINK}
                             target="_blank"
                             rel="noopener noreferrer"
                             aria-label="Contactar por WhatsApp"
-                            className="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center shadow-[0_0_12px_rgba(59,130,246,0.3)] hover:bg-blue-500 transition-colors"
+                            className="w-10 h-10 rounded-lg bg-action text-white grid place-items-center hover:bg-action-hover transition-colors"
                         >
                             <MessageCircle size={18} />
                         </a>
-
                         <button
                             type="button"
                             onClick={() => setIsMenuOpen((open) => !open)}
                             aria-expanded={isMenuOpen}
                             aria-controls="mobile-menu"
                             aria-label={isMenuOpen ? 'Cerrar menú' : 'Abrir menú'}
-                            className="w-10 h-10 rounded-full border border-blue-500/30 text-blue-400 flex items-center justify-center hover:bg-blue-500/10 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b1329]"
+                            className="w-10 h-10 rounded-lg border border-line text-fg grid place-items-center hover:bg-surface transition-colors"
                         >
                             {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
                         </button>
                     </div>
 
-                    {/* Mobile dropdown */}
                     {isMenuOpen && (
                         <div
                             id="mobile-menu"
-                            className="md:hidden absolute top-full left-4 right-4 rounded-2xl bg-[#111c38] border border-blue-500/20 shadow-[0_10px_40px_rgba(0,0,0,0.5)] p-3 flex flex-col text-base font-medium text-gray-200"
+                            className="md:hidden absolute top-full left-4 right-4 mt-2 rounded-xl bg-surface border border-line shadow-[0_16px_40px_rgba(0,0,0,0.5)] p-2 flex flex-col text-base font-medium"
                         >
                             {navLinks.map((link) => (
                                 <a
                                     key={link.href}
                                     href={link.href}
                                     onClick={closeMenu}
-                                    className="rounded-xl px-4 py-3 hover:bg-[#162447] hover:text-blue-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+                                    className="rounded-lg px-4 py-3 text-fg hover:bg-surface-2 transition-colors"
                                 >
                                     {link.label}
                                 </a>
                             ))}
                         </div>
                     )}
-
-                    {/* Desktop nav links */}
-                    <div className="hidden md:flex gap-8 items-center text-sm font-medium text-gray-300">
-                        {navLinks.map((link) => (
-                            <a
-                                key={link.href}
-                                href={link.href}
-                                className="rounded-full px-1 py-1 hover:text-blue-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b1329]"
-                            >
-                                {link.label}
-                            </a>
-                        ))}
-                        <motion.a
-                            href={WHATSAPP_LINK}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                            className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-blue-600 text-white font-semibold shadow-[0_0_16px_rgba(59,130,246,0.25)] hover:bg-blue-500 hover:shadow-[0_0_24px_rgba(59,130,246,0.45)] transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b1329]"
-                        >
-                            <MessageCircle className="w-4 h-4" />
-                            Consultar WhatsApp
-                        </motion.a>
-                    </div>
                 </nav>
             </div>
 
-            {/* Main Content */}
-            <main id="contenido-principal" className="relative z-10 flex flex-col items-center justify-center pt-28 md:pt-36 pb-16 px-4 text-center max-w-4xl mx-auto">
-
-                {/* Status Indicator */}
-                <motion.div
-                    initial={{ opacity: 0, y: -20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5 }}
-                    className="flex items-center justify-center gap-2.5 text-xs text-slate-400 mb-8 font-mono"
-                >
-                    <span className="relative flex h-2 w-2">
-                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                        <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-                    </span>
-                    <span>Estado: <strong className="text-slate-200 font-medium">Disponible para proyectos</strong></span>
-                    <span className="text-slate-600">·</span>
-                    <span>La Plata & Remoto</span>
-                </motion.div>
-
-                {/* Profile Image */}
-                <motion.div
-                    initial={{ scale: 0.8, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    transition={{ duration: 0.6, delay: 0.2 }}
-                    className="mb-8 relative group"
-                >
-                    <div className="absolute inset-0 bg-blue-500 rounded-full blur-xl opacity-20 group-hover:opacity-40 transition-opacity duration-500" />
-                    <div className="w-36 h-36 md:w-40 md:h-40 rounded-full border-2 border-blue-500/30 p-1 relative z-10 bg-[#0b1329]">
-                        <div className="w-full h-full rounded-full bg-gradient-to-br from-[#111c38] to-[#0b1329] flex items-center justify-center text-4xl font-bold text-blue-400 overflow-hidden">
-                            <img
-                                src="/foto.png"
-                                alt="Juan Moore - Desarrollador de Software"
-                                width="320"
-                                height="320"
-                                fetchPriority="high"
-                                className="w-full h-full object-cover opacity-90 hover:scale-110 transition-transform duration-500"
-                            />
+            <main
+                id="contenido-principal"
+                className="relative max-w-6xl mx-auto px-5 sm:px-6 pt-28 md:pt-36 pb-16 md:pb-24 grid gap-12 lg:gap-14 lg:grid-cols-[1.05fr_1fr] lg:items-center"
+            >
+                <div className="min-w-0">
+                    <motion.div {...fadeUp(0)} className="flex items-center gap-3 mb-7">
+                        <img
+                            src="/foto-160.webp"
+                            alt="Juan Moore"
+                            width="48"
+                            height="48"
+                            fetchPriority="high"
+                            className="w-12 h-12 rounded-full object-cover ring-1 ring-line"
+                        />
+                        <div className="text-sm leading-tight">
+                            <p className="font-semibold text-fg">Juan Moore</p>
+                            <p className="text-muted flex items-center gap-2 mt-1">
+                                <span className="relative flex h-2 w-2" aria-hidden="true">
+                                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-60" />
+                                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
+                                </span>
+                                Disponible · La Plata y remoto
+                            </p>
                         </div>
-                    </div>
+                    </motion.div>
+
+                    <motion.h1
+                        {...fadeUp(0.08)}
+                        className="text-[2.6rem] leading-[1.02] sm:text-6xl lg:text-[4.1rem] font-extrabold tracking-[-0.03em] text-fg"
+                    >
+                        Software que ordena tu negocio y <span className="text-signal">vende por WhatsApp</span>
+                    </motion.h1>
+
+                    <motion.p {...fadeUp(0.16)} className="mt-6 text-lg leading-relaxed text-muted max-w-xl">
+                        Webs, catálogos con pedidos QR y sistemas de gestión a medida para comercios y pymes.
+                        Presupuesto cerrado en pesos y sin complicaciones técnicas.
+                    </motion.p>
+
+                    <motion.div {...fadeUp(0.24)} className="mt-9 flex flex-col sm:flex-row gap-3">
+                        <Button href={DEFAULT_WHATSAPP_LINK} external size="lg">
+                            <MessageCircle className="w-5 h-5" />
+                            Escribime por WhatsApp
+                        </Button>
+                        <Button href="#work" variant="secondary" size="lg" className="group">
+                            Ver casos
+                            <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+                        </Button>
+                    </motion.div>
+                </div>
+
+                <motion.div {...fadeUp(0.2)} className="relative min-w-0 pb-10 sm:pb-14 lg:pr-6">
+                    <BrowserFrame
+                        src="/projects/gestor-crm.webp"
+                        alt="Panel de control del Gestor Inmobiliario"
+                        width="1248"
+                        height="831"
+                        className="w-[78%] ml-auto opacity-70"
+                    />
+                    <BrowserFrame
+                        src="/projects/rivas.webp"
+                        alt="Web de Club Riva's, barbería con membresías"
+                        label="Club Riva's"
+                        width="1024"
+                        height="487"
+                        loading="eager"
+                        className="absolute left-0 bottom-0 w-[86%]"
+                    />
                 </motion.div>
 
-                {/* Name & Title */}
                 <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.3 }}
+                    {...fadeUp(0.32)}
+                    className="lg:col-span-2 pt-6 border-t border-line flex flex-col sm:flex-row sm:flex-wrap gap-x-8 gap-y-3 text-sm"
                 >
-                    <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-white mb-3">
-                        Juan Moore
-                    </h1>
-                    <h2 className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-300 to-blue-500 text-lg sm:text-xl md:text-2xl font-semibold tracking-wide mb-6 max-w-2xl mx-auto">
-                        Soluciones Digitales & Software a Medida para Comercios y Pymes
-                    </h2>
-                </motion.div>
-
-                {/* Description */}
-                <motion.p
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 0.5, delay: 0.4 }}
-                    className="text-gray-300 max-w-2xl text-base sm:text-lg mb-10 leading-relaxed font-normal"
-                >
-                    Ayudo a negocios a digitalizar sus ventas, automatizar pedidos y ordenar su gestión interna con herramientas a medida, fáciles de usar y sin complicaciones técnicas.
-                </motion.p>
-
-                {/* Call to Actions */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.5 }}
-                    className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full max-w-md mx-auto"
-                >
-                    {/* Primary CTA: WhatsApp direct */}
-                    <motion.a
-                        href={WHATSAPP_LINK}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        whileHover={{ scale: 1.02 }}
-                        whileTap={{ scale: 0.98 }}
-                        className="group w-full sm:w-auto px-7 py-3.5 bg-blue-600 hover:bg-blue-500 text-white font-semibold text-base rounded-full flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(59,130,246,0.3)] hover:shadow-[0_0_30px_rgba(59,130,246,0.5)] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b1329]"
-                    >
-                        <MessageCircle className="w-5 h-5" />
-                        Consultar por WhatsApp
-                    </motion.a>
-
-                    {/* Secondary CTA: Explore projects */}
-                    <motion.a
-                        href="#work"
-                        whileHover={{ scale: 1.02 }}
-                        whileTap={{ scale: 0.98 }}
-                        className="group w-full sm:w-auto px-7 py-3.5 bg-[#111c38] hover:bg-[#162447] text-slate-200 border border-blue-500/20 hover:border-blue-500/40 font-medium text-base rounded-full flex items-center justify-center gap-2 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b1329]"
-                    >
-                        Ver soluciones
-                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                    </motion.a>
+                    <span className="font-mono text-xs uppercase tracking-[0.12em] text-muted sm:self-center">En producción</span>
+                    {liveSites.map((site) => (
+                        <a
+                            key={site.href}
+                            href={site.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 text-fg hover:text-link transition-colors rounded"
+                        >
+                            <span className="w-1.5 h-1.5 rounded-full bg-signal" aria-hidden="true" />
+                            {site.label}
+                            <ExternalLink className="w-3.5 h-3.5 text-muted" />
+                        </a>
+                    ))}
                 </motion.div>
             </main>
         </div>

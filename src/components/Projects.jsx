@@ -2,71 +2,109 @@ import React from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ArrowRight, ExternalLink, MessageCircle } from 'lucide-react';
+import Button from './ui/Button';
+import BrowserFrame from './ui/BrowserFrame';
+import Reveal from './ui/Reveal';
+import SectionHeader from './ui/SectionHeader';
+import Tag from './ui/Tag';
+import { whatsappLink } from '../constants';
 
 const featuredProjects = [
     {
         id: 'rivas',
-        title: "Club Riva's · Sistema de Membresías y Puntos",
-        category: "Fidelización & Ingresos Recurrentes",
-        description: "Plataforma web para barbería orientada a predecir ingresos mensuales y fidelizar clientes.",
-        challenge: "Cortes esporádicos y caja impredecible. Dificultad para fidelizar clientes e incentivar compra de productos en el salón.",
-        solution: "Web con tarjeta digital de socio #0001, planes de suscripción mensual (4 cortes al mes) y sistema de acumulación de puntos por consumo canjeables en mostrador.",
-        tags: ["Membresías Mensuales", "Club de Puntos", "Tarjeta Digital", "Turnos Online"],
-        image: "/rivas_barberia_loyalty.png",
-        browserUrl: "club.rivaspeluqueria.com",
+        title: "Club Riva's",
+        subtitle: 'Sistema de membresías y puntos',
+        category: 'Fidelización e ingresos recurrentes',
+        description: 'Plataforma web para barbería orientada a predecir ingresos mensuales y fidelizar clientes.',
+        challenge: 'Cortes esporádicos y caja impredecible. Dificultad para fidelizar clientes e incentivar compra de productos en el salón.',
+        solution: 'Web con tarjeta digital de socio #0001, planes de suscripción mensual (4 cortes al mes) y sistema de acumulación de puntos por consumo canjeables en mostrador.',
+        tags: ['Membresías mensuales', 'Club de puntos', 'Tarjeta digital', 'Turnos online'],
+        image: '/projects/rivas.webp',
+        width: 1024,
+        height: 487,
         whatsappText: "Hola Juan, vi el caso de Club Riva's y me gustaría consultarte por una solución similar para mi negocio",
-        longDescription: "Solución integral diseñada para peluquerías y centros de estética orientada a generar ingresos recurrentes predecibles y maximizar la retención de clientes. Incorpora catálogo visual de servicios, suscripciones mensuales recurrentes (ej: 4 cortes al mes con tarjeta digital de socio #0001) y un programa de puntos acumulables por consumo para canjear en el local por productos de salón. Incluye integración de reservas de turnos y mapa geolocalizado."
+        longDescription: 'Solución integral diseñada para peluquerías y centros de estética orientada a generar ingresos recurrentes predecibles y maximizar la retención de clientes. Incorpora catálogo visual de servicios, suscripciones mensuales recurrentes (ej: 4 cortes al mes con tarjeta digital de socio #0001) y un programa de puntos acumulables por consumo para canjear en el local por productos de salón. Incluye integración de reservas de turnos y mapa geolocalizado.'
     },
     {
         id: 'tasando',
-        title: "Tasando · Valuaciones Inmobiliarias Inmediatas",
-        category: "PropTech & Inteligencia Artificial",
-        description: "Plataforma profesional que automatiza el análisis comparativo de mercado (ACM) para inmobiliarias y martilleros.",
-        challenge: "Tasaciones manuales lentas, dispersión de valores entre portales y necesidad de entregar informes confiables a propietarios en minutos.",
-        solution: "Búsqueda cruzada automática en portales líderes, cálculo instantáneo de valor por m² ajustado por coeficientes y generación de reportes ejecutivos en PDF.",
-        tags: ["Búsqueda entre Portales", "Generación de PDF", "Cálculos Automáticos", "PropTech B2B"],
-        image: "/tasando_valuaciones.png",
-        browserUrl: "tasando.com.ar",
-        link: "https://tasando.com.ar",
-        longDescription: "Herramienta profesional desarrollada para martilleros, inmobiliarias y agentes que automatiza el proceso de tasación mediante análisis comparativo de mercado (ACM) e inteligencia artificial. Integra búsqueda cruzada de propiedades comparables en portales líderes, cálculo automático de valor por metro cuadrado ajustado por coeficientes, y generación de informes ejecutivos en PDF de alto impacto visual listos para presentar al cliente."
+        title: 'Tasando',
+        subtitle: 'Valuaciones inmobiliarias inmediatas',
+        category: 'PropTech e inteligencia artificial',
+        description: 'Plataforma profesional que automatiza el análisis comparativo de mercado (ACM) para inmobiliarias y martilleros.',
+        challenge: 'Tasaciones manuales lentas, dispersión de valores entre portales y necesidad de entregar informes confiables a propietarios en minutos.',
+        solution: 'Búsqueda cruzada automática en portales líderes, cálculo instantáneo de valor por m² ajustado por coeficientes y generación de reportes ejecutivos en PDF.',
+        tags: ['Búsqueda entre portales', 'Generación de PDF', 'Cálculos automáticos', 'PropTech B2B'],
+        image: '/projects/tasando.webp',
+        width: 1024,
+        height: 394,
+        link: 'https://tasando.com.ar',
+        linkLabel: 'tasando.com.ar',
+        longDescription: 'Herramienta profesional desarrollada para martilleros, inmobiliarias y agentes que automatiza el proceso de tasación mediante análisis comparativo de mercado (ACM) e inteligencia artificial. Integra búsqueda cruzada de propiedades comparables en portales líderes, cálculo automático de valor por metro cuadrado ajustado por coeficientes, y generación de informes ejecutivos en PDF de alto impacto visual listos para presentar al cliente.'
+    },
+    {
+        id: 'el-refugio',
+        title: 'El Refugio',
+        subtitle: 'Reservas directas para alquiler temporal',
+        category: 'Reservas directas',
+        description: 'Plataforma de reservas directas para alojamiento vacacional. Gestión de disponibilidad en tiempo real y panel de administración.',
+        challenge: 'Reservas coordinadas a mano con cada huésped: consultar fechas libres, confirmar disponibilidad y cobrar señas por separado.',
+        solution: 'Web de reservas directas con galería de imágenes, selector de fechas que bloquea automáticamente los días ocupados, pago de señas online y panel para gestionar reservas e ingresos.',
+        tags: ['Reservas directas', 'Calendario dinámico', 'Pagos online', 'Panel admin'],
+        image: '/projects/el-refugio.webp',
+        width: 1400,
+        height: 674,
+        link: 'https://www.elrefugioaguasverdes.com.ar/',
+        linkLabel: 'elrefugioaguasverdes.com.ar',
+        longDescription: 'Portal de reservas directas para propietarios de alquileres temporales. Ofrece una experiencia de usuario fluida con galería de imágenes inmersiva, selector de fechas con bloqueo automático de días no disponibles y pasarela de pagos integrada para señas. El panel administrativo permite visualizar reservas, ingresos y gestionar el bloqueo de fechas por mantenimiento.'
     }
 ];
 
 const secondaryProjects = [
     {
-        title: "Menú Online & Pedidos QR",
-        category: "Gastronomía",
-        description: "Catálogo digital interactivo para agilizar la toma de comandas. Genera pedidos automáticos a WhatsApp sin comisiones.",
-        longDescription: "Sistema de menú digital autogestionable que permite a los restaurantes actualizar precios y disponibilidad en tiempo real. Los clientes pueden armar su pedido escaneando un QR, personalizar ingredientes y enviar la orden directamente al WhatsApp del local con un mensaje preformateado, eliminando errores de transcripción y comisiones de apps de delivery.",
-        image: "/food_menu_app_1770145577594.png",
-        tags: ["Catálogo QR", "WhatsApp API", "Cero Comisiones", "Gestión Rápida"]
+        title: 'Menú online y pedidos QR',
+        category: 'Gastronomía',
+        description: 'Catálogo digital interactivo para agilizar la toma de comandas. Genera pedidos automáticos a WhatsApp sin comisiones.',
+        longDescription: 'Sistema de menú digital autogestionable que permite a los restaurantes actualizar precios y disponibilidad en tiempo real. Los clientes pueden armar su pedido escaneando un QR, personalizar ingredientes y enviar la orden directamente al WhatsApp del local con un mensaje preformateado, eliminando errores de transcripción y comisiones de apps de delivery.',
+        image: '/projects/menu-qr.webp',
+        width: 800,
+        height: 800,
+        imagePosition: 'object-center',
+        tags: ['Catálogo QR', 'WhatsApp API', 'Cero comisiones', 'Gestión rápida']
     },
     {
-        title: "Gestor Inmobiliario & CRM",
-        category: "Administración Pyme",
-        description: "Solución integral para gestión de agencias y pymes. Centraliza carteras de clientes, propiedades y agenda de visitas.",
-        longDescription: "Plataforma completa diseñada para optimizar el flujo de trabajo de agencias inmobiliarias modernas. Permite una gestión centralizada de propiedades con carga de multimedia, administración de clientes potenciales (leads) con seguimiento de estado, y un calendario interactivo para coordinar visitas. Incluye generación automática de contratos en PDF y reportes de rendimiento.",
-        image: "/real_estate_crm_1770145563511.png",
-        tags: ["CRM a Medida", "Gestión de Clientes", "Calendario", "Reportes PDF"]
+        title: 'Gestor inmobiliario y CRM',
+        category: 'Administración pyme',
+        description: 'Solución integral para gestión de agencias y pymes. Centraliza carteras de clientes, propiedades y agenda de visitas.',
+        longDescription: 'Plataforma completa diseñada para optimizar el flujo de trabajo de agencias inmobiliarias modernas. Permite una gestión centralizada de propiedades con carga de multimedia, administración de clientes potenciales (leads) con seguimiento de estado, y un calendario interactivo para coordinar visitas. Incluye generación automática de contratos en PDF y reportes de rendimiento.',
+        image: '/projects/gestor-crm.webp',
+        width: 1248,
+        height: 831,
+        tags: ['CRM a medida', 'Gestión de clientes', 'Calendario', 'Reportes PDF']
     },
     {
-        title: "Web de Alquiler Temporal",
-        category: "Reservas Directas",
-        description: "Plataforma de reservas directas para alojamiento vacacional. Gestión de disponibilidad en tiempo real y panel de administración.",
-        longDescription: "Portal de reservas directas para propietarios de alquileres temporales. Ofrece una experiencia de usuario fluida con galería de imágenes inmersiva, selector de fechas con bloqueo automático de días no disponibles y pasarela de pagos integrada para señas. El panel administrativo permite visualizar reservas, ingresos y gestionar el bloqueo de fechas por mantenimiento.",
-        image: "/vacation_rental_booking_1770145599875.png",
-        tags: ["Reservas Directas", "Calendario Dinámico", "Pagos Online", "Panel Admin"],
-        link: "https://www.elrefugioaguasverdes.com.ar/"
-    },
-    {
-        title: "BusApp",
-        category: "Geolocalización en Tiempo Real",
-        description: "App de seguimiento de transporte público en tiempo real con integración de mapas y predicción de arribos.",
-        longDescription: "Aplicación móvil para el seguimiento en tiempo real de unidades de transporte público. Integra la API de Google Maps para visualizar recorridos y paradas cercanas con algoritmos de estimación de llegada.",
-        image: "/bus_tracking_app_1770145629770.png",
-        tags: ["Google Maps", "Geolocalización", "Tiempo Real", "Mobile UX"]
+        title: 'BusApp',
+        category: 'Geolocalización',
+        description: 'App de seguimiento de transporte público en tiempo real con integración de mapas y predicción de arribos.',
+        longDescription: 'Aplicación móvil para el seguimiento en tiempo real de unidades de transporte público. Integra la API de Google Maps para visualizar recorridos y paradas cercanas con algoritmos de estimación de llegada.',
+        image: '/projects/busapp.webp',
+        width: 1200,
+        height: 707,
+        tags: ['Google Maps', 'Geolocalización', 'Tiempo real', 'Mobile UX']
     }
 ];
+
+const similarSolutionLink = (project) =>
+    whatsappLink(
+        project.whatsappText ||
+            `Hola Juan, vi tu proyecto ${project.title} y me gustaría consultarte por algo similar para mi negocio`
+    );
+
+const LiveBadge = () => (
+    <span className="inline-flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-[0.1em] text-signal">
+        <span className="w-1.5 h-1.5 rounded-full bg-signal" aria-hidden="true" />
+        En vivo
+    </span>
+);
 
 const Projects = () => {
     const [selectedProject, setSelectedProject] = React.useState(null);
@@ -86,380 +124,155 @@ const Projects = () => {
         });
     };
 
-    const rivasProject = featuredProjects[0];
-    const tasandoProject = featuredProjects[1];
-
     return (
-        <section id="work" className="py-24 bg-[#0b1329] relative overflow-hidden">
-            {/* Background Atmosphere Elements */}
-            <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-                <div className="absolute top-1/4 left-0 w-96 h-96 bg-blue-500 rounded-full mix-blend-screen filter blur-[128px] opacity-5"></div>
-                <div className="absolute top-2/3 right-0 w-96 h-96 bg-[#111c38] rounded-full mix-blend-screen filter blur-[128px] opacity-20"></div>
-                <div className="absolute bottom-1/4 left-1/3 w-80 h-80 bg-blue-600 rounded-full mix-blend-screen filter blur-[140px] opacity-5"></div>
-            </div>
+        <section id="work" className="py-20 md:py-28 bg-ink border-t border-line/60">
+            <div className="max-w-6xl mx-auto px-5 sm:px-6">
+                <SectionHeader
+                    eyebrow="Casos"
+                    title="Problemas concretos, resueltos con software"
+                    description="De tareas operativas del día a día a herramientas que generan ingresos recurrentes, automatizan ventas y ordenan la administración."
+                />
 
-            <div className="max-w-7xl mx-auto px-6 relative z-10">
-                {/* Header Section */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6 }}
-                    className="mb-16 md:mb-20 text-center"
-                >
-                    <p className="text-blue-400 font-mono text-xs uppercase tracking-widest font-semibold mb-3">
-                        // 02 · CASOS DE ESTUDIO & SOLUCIONES
-                    </p>
-                    <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight">
-                        Soluciones con <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-blue-500">Impacto Real en el Negocio</span>
-                    </h2>
-                    <p className="text-gray-300 max-w-3xl mx-auto text-lg leading-relaxed">
-                        De problemas operativos cotidianos a herramientas digitales que generan ingresos recurrentes, automatizan ventas y ordenan la administración.
-                    </p>
-                </motion.div>
-
-                {/* Featured Case Studies */}
-                <div className="space-y-12 lg:space-y-16 mb-20">
-                    {/* Featured Case 1: Club Riva's */}
-                    <motion.article
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6 }}
-                        className="rounded-3xl bg-[#111c38] border border-blue-500/20 p-6 sm:p-8 lg:p-10 hover:border-blue-500/35 transition-[border-color,box-shadow] duration-300 shadow-[0_8px_30px_rgba(0,0,0,0.3)]"
-                    >
-                        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
-                            {/* Visual: Browser Mockup (7 cols) */}
-                            <div className="lg:col-span-7">
-                                <BrowserMockup
-                                    project={rivasProject}
-                                    onClick={(e) => handleOpenProject(rivasProject, e)}
-                                />
-                            </div>
-
-                            {/* Content (5 cols) */}
-                            <div className="lg:col-span-5 flex flex-col justify-between">
-                                <div>
-                                    <div className="mb-3">
-                                        <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-blue-400 bg-blue-500/10 border border-blue-500/20 px-3 py-1 rounded-full">
-                                            {rivasProject.category}
-                                        </span>
-                                    </div>
-
-                                    <h3 className="text-2xl sm:text-3xl font-bold text-white tracking-tight mb-3">
-                                        {rivasProject.title}
-                                    </h3>
-
-                                    <p className="text-gray-300 text-sm sm:text-base leading-relaxed mb-6">
-                                        {rivasProject.description}
-                                    </p>
-
-                                    {/* Structured Points */}
-                                    <div className="space-y-3 mb-6 p-4 rounded-xl bg-[#0b1329]/75 border border-blue-500/15">
-                                        <div>
-                                            <span className="font-bold text-slate-200 text-sm flex items-center gap-2 mb-1">
-                                                <span className="w-2 h-2 rounded-full bg-amber-400 shrink-0"></span>
-                                                El Desafío:
-                                            </span>
-                                            <p className="text-gray-300 text-xs sm:text-sm leading-relaxed pl-4">
-                                                {rivasProject.challenge}
-                                            </p>
-                                        </div>
-                                        <div className="pt-2.5 border-t border-blue-500/10">
-                                            <span className="font-bold text-blue-400 text-sm flex items-center gap-2 mb-1">
-                                                <span className="w-2 h-2 rounded-full bg-blue-400 shrink-0"></span>
-                                                La Solución:
-                                            </span>
-                                            <p className="text-gray-300 text-xs sm:text-sm leading-relaxed pl-4">
-                                                {rivasProject.solution}
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                    {/* Tags */}
-                                    <div className="flex flex-wrap gap-2 mb-7">
-                                        {rivasProject.tags.map((tag, i) => (
-                                            <span
-                                                key={i}
-                                                className="text-xs font-medium text-slate-300 bg-[#162447] px-2.5 py-1 rounded-md border border-blue-500/15"
-                                            >
-                                                {tag}
-                                            </span>
-                                        ))}
-                                    </div>
-                                </div>
-
-                                {/* Action Buttons */}
-                                <div className="flex flex-wrap items-center gap-3 pt-2">
-                                    <button
-                                        type="button"
-                                        onClick={(e) => handleOpenProject(rivasProject, e)}
-                                        className="px-5 py-2.5 rounded-full bg-blue-600 hover:bg-blue-500 text-white font-semibold text-sm transition-all shadow-[0_0_20px_rgba(59,130,246,0.3)] hover:shadow-[0_0_28px_rgba(59,130,246,0.5)] flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[#111c38] cursor-pointer"
-                                    >
-                                        Ver detalles completos
-                                        <ArrowRight className="w-4 h-4" />
-                                    </button>
-
-                                    <a
-                                        href={`https://wa.me/542216430365?text=${encodeURIComponent(rivasProject.whatsappText)}`}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="px-5 py-2.5 rounded-full bg-[#162447] hover:bg-[#1d2f5a] text-blue-300 hover:text-white border border-blue-500/30 font-medium text-sm transition-all flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[#111c38]"
-                                    >
-                                        <MessageCircle className="w-4 h-4 text-blue-400" />
-                                        Consultar solución similar
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </motion.article>
-
-                    {/* Featured Case 2: Tasando (Reversed Layout) */}
-                    <motion.article
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6 }}
-                        className="rounded-3xl bg-[#111c38] border border-blue-500/20 p-6 sm:p-8 lg:p-10 hover:border-blue-500/35 transition-[border-color,box-shadow] duration-300 shadow-[0_8px_30px_rgba(0,0,0,0.3)]"
-                    >
-                        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
-                            {/* Content (5 cols on desktop, ordered first on desktop) */}
-                            <div className="lg:col-span-5 order-2 lg:order-1 flex flex-col justify-between">
-                                <div>
-                                    <div className="mb-3">
-                                        <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-blue-400 bg-blue-500/10 border border-blue-500/20 px-3 py-1 rounded-full">
-                                            {tasandoProject.category}
-                                        </span>
-                                    </div>
-
-                                    <h3 className="text-2xl sm:text-3xl font-bold text-white tracking-tight mb-3">
-                                        {tasandoProject.title}
-                                    </h3>
-
-                                    <p className="text-gray-300 text-sm sm:text-base leading-relaxed mb-6">
-                                        {tasandoProject.description}
-                                    </p>
-
-                                    {/* Structured Points */}
-                                    <div className="space-y-3 mb-6 p-4 rounded-xl bg-[#0b1329]/75 border border-blue-500/15">
-                                        <div>
-                                            <span className="font-bold text-slate-200 text-sm flex items-center gap-2 mb-1">
-                                                <span className="w-2 h-2 rounded-full bg-amber-400 shrink-0"></span>
-                                                El Desafío:
-                                            </span>
-                                            <p className="text-gray-300 text-xs sm:text-sm leading-relaxed pl-4">
-                                                {tasandoProject.challenge}
-                                            </p>
-                                        </div>
-                                        <div className="pt-2.5 border-t border-blue-500/10">
-                                            <span className="font-bold text-blue-400 text-sm flex items-center gap-2 mb-1">
-                                                <span className="w-2 h-2 rounded-full bg-blue-400 shrink-0"></span>
-                                                La Solución:
-                                            </span>
-                                            <p className="text-gray-300 text-xs sm:text-sm leading-relaxed pl-4">
-                                                {tasandoProject.solution}
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                    {/* Tags */}
-                                    <div className="flex flex-wrap gap-2 mb-7">
-                                        {tasandoProject.tags.map((tag, i) => (
-                                            <span
-                                                key={i}
-                                                className="text-xs font-medium text-slate-300 bg-[#162447] px-2.5 py-1 rounded-md border border-blue-500/15"
-                                            >
-                                                {tag}
-                                            </span>
-                                        ))}
-                                    </div>
-                                </div>
-
-                                {/* Action Buttons */}
-                                <div className="flex flex-wrap items-center gap-3 pt-2">
-                                    <a
-                                        href={tasandoProject.link}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="px-5 py-2.5 rounded-full bg-blue-600 hover:bg-blue-500 text-white font-semibold text-sm transition-all shadow-[0_0_20px_rgba(59,130,246,0.3)] hover:shadow-[0_0_28px_rgba(59,130,246,0.5)] flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[#111c38]"
-                                    >
-                                        Visitar tasando.com.ar
-                                        <ExternalLink className="w-4 h-4" />
-                                    </a>
-
-                                    <button
-                                        type="button"
-                                        onClick={(e) => handleOpenProject(tasandoProject, e)}
-                                        className="px-5 py-2.5 rounded-full bg-[#162447] hover:bg-[#1d2f5a] text-blue-300 hover:text-white border border-blue-500/30 font-medium text-sm transition-all flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[#111c38] cursor-pointer"
-                                    >
-                                        Ver detalles
-                                        <ArrowRight className="w-4 h-4" />
-                                    </button>
-                                </div>
-                            </div>
-
-                            {/* Visual: Browser Mockup (7 cols on desktop, ordered second on desktop) */}
-                            <div className="lg:col-span-7 order-1 lg:order-2">
-                                <BrowserMockup
-                                    project={tasandoProject}
-                                    onClick={(e) => handleOpenProject(tasandoProject, e)}
-                                />
-                            </div>
-                        </div>
-                    </motion.article>
+                <div className="grid gap-20 md:gap-28">
+                    {featuredProjects.map((project, index) => (
+                        <CaseStudy
+                            key={project.id}
+                            project={project}
+                            reverse={index % 2 === 1}
+                            onOpen={(event) => handleOpenProject(project, event)}
+                        />
+                    ))}
                 </div>
 
-                {/* Secondary Grid: Otras Soluciones Desarrolladas */}
-                <div className="mt-16 pt-16 border-t border-blue-500/15">
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.5 }}
-                        className="mb-10 text-center md:text-left flex flex-col md:flex-row md:items-end justify-between gap-4"
-                    >
-                        <div>
-                            <p className="text-blue-400 font-mono text-xs uppercase tracking-widest font-semibold mb-2">
-                                // MÁS DESARROLLOS
-                            </p>
-                            <h3 className="text-2xl md:text-3xl font-bold text-white tracking-tight">
-                                Otras Soluciones Implementadas
-                            </h3>
-                        </div>
-                        <p className="text-sm text-gray-400 max-w-md">
-                            Herramientas y plataformas complementarias desarrolladas para optimizar procesos comerciales, reservas directas y logística.
+                <div className="mt-24 md:mt-32">
+                    <Reveal className="mb-10 flex flex-col md:flex-row md:items-end justify-between gap-4">
+                        <h3 className="text-2xl md:text-3xl font-bold tracking-tight text-fg">Otros desarrollos</h3>
+                        <p className="text-muted max-w-md">
+                            Herramientas para procesos comerciales, gastronomía y logística.
                         </p>
-                    </motion.div>
+                    </Reveal>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
                         {secondaryProjects.map((project, index) => (
                             <SecondaryCard
                                 key={project.title}
                                 project={project}
                                 index={index}
-                                onClick={(e) => handleOpenProject(project, e)}
+                                onClick={(event) => handleOpenProject(project, event)}
                             />
                         ))}
                     </div>
                 </div>
             </div>
 
-            {/* Modal Portal */}
             <AnimatePresence>
-                {selectedProject && (
-                    <ProjectModal project={selectedProject} onClose={handleCloseProject} />
-                )}
+                {selectedProject && <ProjectModal project={selectedProject} onClose={handleCloseProject} />}
             </AnimatePresence>
         </section>
     );
 };
 
-const BrowserMockup = ({ project, onClick }) => {
-    return (
+const CaseStudy = ({ project, reverse, onOpen }) => (
+    <Reveal as="article" className="grid gap-8 lg:gap-14 lg:grid-cols-12 lg:items-center">
         <button
             type="button"
-            onClick={onClick}
-            aria-label={`Ver detalles completos de ${project.title}`}
-            className="group w-full text-left rounded-2xl overflow-hidden bg-[#0b1329] border border-blue-500/20 hover:border-blue-500/40 transition-[border-color,box-shadow,transform] duration-300 hover:shadow-[0_0_35px_rgba(59,130,246,0.18)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b1329] block cursor-pointer"
+            onClick={onOpen}
+            aria-haspopup="dialog"
+            aria-label={`Ver detalles de ${project.title}`}
+            className={`group block text-left rounded-xl lg:col-span-7 cursor-pointer ${reverse ? 'lg:order-2' : ''}`}
         >
-            {/* Top Bar with Three Subtle Dots */}
-            <div className="bg-[#162447] px-4 py-3 border-b border-blue-500/15 flex items-center justify-between">
-                <div className="flex items-center gap-1.5">
-                    <span className="w-2.5 h-2.5 rounded-full bg-red-400/80 inline-block"></span>
-                    <span className="w-2.5 h-2.5 rounded-full bg-amber-400/80 inline-block"></span>
-                    <span className="w-2.5 h-2.5 rounded-full bg-emerald-400/80 inline-block"></span>
-                </div>
-                <div className="bg-[#0b1329]/80 rounded-md px-3 py-1 text-xs font-mono text-slate-300 border border-blue-500/15 flex items-center gap-2 max-w-[240px] truncate">
-                    <span className="text-blue-400 text-[10px]">🔒</span>
-                    <span className="truncate">{project.browserUrl || 'app.solucion.com'}</span>
-                </div>
-                <div className="w-10 flex justify-end">
-                    <span className="text-slate-400 text-xs font-mono group-hover:text-blue-400 transition-colors">↗</span>
-                </div>
-            </div>
-
-            {/* Viewport Area */}
-            <div className="relative aspect-[16/10] sm:aspect-[16/9] lg:aspect-[16/10] bg-[#0b1329] flex items-center justify-center overflow-hidden p-3 sm:p-5">
-                <img
-                    src={project.image}
-                    alt={project.title}
-                    width="900"
-                    height="580"
-                    loading="lazy"
-                    className="w-full h-full object-contain rounded-lg transform group-hover:scale-[1.03] transition-transform duration-500 ease-out"
-                />
-                {/* Hover Cue */}
-                <div className="absolute inset-0 bg-[#0b1329]/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-[2px]">
-                    <span className="px-4 py-2 rounded-full bg-blue-600/90 text-white font-medium text-xs tracking-wider uppercase shadow-lg border border-blue-400/30 flex items-center gap-2">
-                        Click para ver detalles interactivos
-                    </span>
-                </div>
-            </div>
+            <BrowserFrame
+                src={project.image}
+                alt={`${project.title}: ${project.subtitle}`}
+                label={project.linkLabel || project.title}
+                width={project.width}
+                height={project.height}
+                className="transition-[border-color,transform] duration-300 group-hover:border-muted/50 group-hover:-translate-y-1"
+            />
         </button>
-    );
-};
 
-const SecondaryCard = ({ project, index, onClick }) => {
-    return (
-        <motion.button
+        <div className={`min-w-0 lg:col-span-5 ${reverse ? 'lg:order-1' : ''}`}>
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mb-4">
+                <p className="font-mono text-xs uppercase tracking-[0.12em] text-muted">{project.category}</p>
+                {project.link && <LiveBadge />}
+            </div>
+
+            <h3 className="text-3xl sm:text-4xl font-bold tracking-tight text-fg">{project.title}</h3>
+            <p className="mt-1 text-lg text-muted">{project.subtitle}</p>
+
+            <dl className="mt-7 grid gap-5 border-l border-line pl-5">
+                <div>
+                    <dt className="text-sm font-semibold text-signal mb-1">Desafío</dt>
+                    <dd className="text-[0.95rem] leading-relaxed text-fg/85">{project.challenge}</dd>
+                </div>
+                <div>
+                    <dt className="text-sm font-semibold text-fg mb-1">Solución</dt>
+                    <dd className="text-[0.95rem] leading-relaxed text-fg/85">{project.solution}</dd>
+                </div>
+            </dl>
+
+            <div className="mt-6 flex flex-wrap gap-2">
+                {project.tags.map((tag) => (
+                    <Tag key={tag}>{tag}</Tag>
+                ))}
+            </div>
+
+            <div className="mt-8 flex flex-wrap gap-3">
+                {project.link ? (
+                    <Button href={project.link} external>
+                        Visitar {project.linkLabel}
+                        <ExternalLink className="w-4 h-4" />
+                    </Button>
+                ) : (
+                    <Button href={similarSolutionLink(project)} external>
+                        <MessageCircle className="w-4 h-4" />
+                        Quiero algo similar
+                    </Button>
+                )}
+                <Button variant="secondary" onClick={onOpen} aria-haspopup="dialog" className="group">
+                    Ver detalles
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+                </Button>
+            </div>
+        </div>
+    </Reveal>
+);
+
+const SecondaryCard = ({ project, index, onClick }) => (
+    <Reveal delay={index * 0.06} className="h-full">
+        <button
             type="button"
             aria-haspopup="dialog"
             aria-label={`Ver detalles de ${project.title}`}
-            initial={{ opacity: 0, y: 25 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.45, delay: index * 0.08 }}
-            className="group rounded-2xl bg-[#111c38] border border-blue-500/15 p-5 hover:border-blue-500/35 hover:bg-[#162447]/60 transition-[border-color,background-color,box-shadow,transform] duration-300 hover:shadow-[0_0_25px_rgba(59,130,246,0.12)] flex flex-col text-left touch-manipulation focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b1329] h-full cursor-pointer"
             onClick={onClick}
+            className="group h-full w-full flex flex-col text-left rounded-xl border border-line bg-surface overflow-hidden hover:border-muted/50 transition-colors cursor-pointer"
         >
-            {/* Thumbnail */}
-            <div className="relative h-44 rounded-xl overflow-hidden bg-[#0b1329] mb-4 border border-blue-500/10 flex items-center justify-center p-2.5">
+            <div className="aspect-[16/10] overflow-hidden border-b border-line bg-ink">
                 <img
                     src={project.image}
-                    alt={project.title}
-                    width="400"
-                    height="280"
+                    alt=""
+                    width={project.width}
+                    height={project.height}
                     loading="lazy"
-                    className="w-full h-full object-contain transform group-hover:scale-105 transition-transform duration-500 ease-out"
+                    className={`w-full h-full object-cover ${project.imagePosition || 'object-top'} transition-transform duration-500 group-hover:scale-[1.03]`}
                 />
-                <div className="absolute inset-0 bg-[#0b1329]/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                    <span className="text-white text-xs font-semibold px-3 py-1.5 rounded-full bg-blue-600/90 shadow">
-                        Ver detalles
-                    </span>
-                </div>
             </div>
 
-            {/* Category */}
-            <div className="mb-2">
-                <span className="text-[11px] font-bold text-blue-400 uppercase tracking-wider bg-blue-500/10 border border-blue-500/20 px-2.5 py-0.5 rounded-full inline-block">
-                    {project.category}
+            <div className="p-5 flex flex-col flex-1">
+                <div className="flex items-center justify-between gap-3 mb-2">
+                    <p className="font-mono text-[11px] uppercase tracking-[0.1em] text-muted truncate">{project.category}</p>
+                    {project.link && <LiveBadge />}
+                </div>
+                <h4 className="font-display text-lg font-bold text-fg leading-snug">{project.title}</h4>
+                <p className="mt-2 text-sm leading-relaxed text-muted line-clamp-3">{project.description}</p>
+                <span className="mt-auto pt-5 inline-flex items-center gap-1.5 text-sm font-medium text-link">
+                    Ver detalles
+                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
                 </span>
             </div>
-
-            {/* Title */}
-            <h4 className="text-base font-bold text-white mb-2 group-hover:text-blue-400 transition-colors line-clamp-1">
-                {project.title}
-            </h4>
-
-            {/* Short Description */}
-            <p className="text-gray-300 text-xs sm:text-sm leading-relaxed mb-4 flex-grow line-clamp-3">
-                {project.description}
-            </p>
-
-            {/* Tags */}
-            <div className="flex flex-wrap gap-1.5 mt-auto pt-3 border-t border-blue-500/10">
-                {project.tags.slice(0, 3).map((tag, i) => (
-                    <span
-                        key={i}
-                        className="text-[11px] font-medium text-slate-300 bg-[#0b1329] px-2 py-0.5 rounded border border-blue-500/10"
-                    >
-                        {tag}
-                    </span>
-                ))}
-            </div>
-        </motion.button>
-    );
-};
+        </button>
+    </Reveal>
+);
 
 const ProjectModal = ({ project, onClose }) => {
     const modalRef = React.useRef(null);
@@ -510,129 +323,104 @@ const ProjectModal = ({ project, onClose }) => {
     if (typeof document === 'undefined') return null;
 
     return createPortal(
-        <>
+        <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[9999] bg-black/75 backdrop-blur-sm flex items-center justify-center p-4"
+            onClick={onClose}
+        >
             <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                className="fixed inset-0 bg-black/80 backdrop-blur-sm z-[9999] flex items-center justify-center p-4"
-                onClick={onClose}
-            >
-                <div className="absolute inset-0 pointer-events-none">
-                    <div className="absolute top-1/4 left-0 w-96 h-96 bg-blue-500 rounded-full mix-blend-screen filter blur-[128px] opacity-10"></div>
-                </div>
-            </motion.div>
-
-            <motion.div
-                initial={{ opacity: 0, scale: 0.9, y: 20 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.9, y: 20 }}
-                transition={{ type: "spring", damping: 25, stiffness: 300 }}
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 16 }}
+                transition={{ duration: 0.25, ease: 'easeOut' }}
                 ref={modalRef}
                 role="dialog"
                 aria-modal="true"
                 aria-labelledby="project-modal-title"
                 aria-describedby="project-modal-description"
                 tabIndex={-1}
-                className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[10000] w-full max-w-4xl max-h-[90vh] overflow-y-auto overscroll-contain bg-[#111c38] border border-blue-500/20 rounded-2xl shadow-2xl shadow-blue-500/10 scrollbar-thin scrollbar-thumb-blue-500/20 scrollbar-track-transparent focus-visible:outline-none"
-                onClick={(e) => e.stopPropagation()}
-                style={{ position: 'fixed', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}
+                className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto overscroll-contain bg-surface border border-line rounded-2xl shadow-2xl focus-visible:outline-none"
+                onClick={(event) => event.stopPropagation()}
             >
                 <button
+                    type="button"
                     onClick={onClose}
                     aria-label={`Cerrar detalles de ${project.title}`}
-                    className="absolute top-4 right-4 z-10 p-2 rounded-full bg-black/60 text-white hover:bg-blue-600 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[#111c38] cursor-pointer"
+                    className="absolute top-3 right-3 z-10 p-2 rounded-lg bg-ink/80 text-fg hover:bg-ink transition-colors cursor-pointer"
                 >
-                    <X size={24} />
+                    <X size={20} />
                 </button>
 
-                <div className="grid md:grid-cols-2">
-                    <div className="h-64 md:h-full min-h-[300px] relative bg-[#0b1329] flex items-center justify-center p-4">
-                        <img
-                            src={project.image}
-                            alt={project.title}
-                            width="800"
-                            height="900"
-                            className="w-full h-full object-contain rounded-lg"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-[#111c38] via-transparent to-transparent md:bg-gradient-to-r md:from-transparent md:to-[#111c38]/50"></div>
+                <div className="bg-ink border-b border-line">
+                    <img
+                        src={project.image}
+                        alt={project.title}
+                        width={project.width}
+                        height={project.height}
+                        className="block w-full h-auto max-h-[45vh] object-contain mx-auto"
+                    />
+                </div>
+
+                <div className="p-6 sm:p-8 grid gap-8 md:grid-cols-[1.4fr_1fr]">
+                    <div className="min-w-0">
+                        <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mb-3">
+                            <p className="font-mono text-xs uppercase tracking-[0.12em] text-muted">{project.category}</p>
+                            {project.link && <LiveBadge />}
+                        </div>
+                        <h2 id="project-modal-title" className="text-2xl md:text-3xl font-bold tracking-tight text-fg">
+                            {project.title}
+                            {project.subtitle && <span className="block text-lg font-normal font-sans text-muted mt-1">{project.subtitle}</span>}
+                        </h2>
+                        <p id="project-modal-description" className="mt-4 leading-relaxed text-fg/85">
+                            {project.longDescription || project.description}
+                        </p>
+
+                        {project.challenge && (
+                            <dl className="mt-6 grid gap-4 border-l border-line pl-5">
+                                <div>
+                                    <dt className="text-sm font-semibold text-signal mb-1">Desafío</dt>
+                                    <dd className="text-sm leading-relaxed text-fg/85">{project.challenge}</dd>
+                                </div>
+                                <div>
+                                    <dt className="text-sm font-semibold text-fg mb-1">Solución</dt>
+                                    <dd className="text-sm leading-relaxed text-fg/85">{project.solution}</dd>
+                                </div>
+                            </dl>
+                        )}
                     </div>
 
-                    <div className="p-8 flex flex-col justify-between">
+                    <div className="min-w-0 flex flex-col gap-6">
                         <div>
-                            <div className="mb-4">
-                                <span className="text-blue-400 text-xs font-bold tracking-wider uppercase bg-blue-500/10 border border-blue-500/20 px-3 py-1 rounded-full inline-block">
-                                    {project.category}
-                                </span>
-                            </div>
-                            <h2 id="project-modal-title" className="text-2xl md:text-3xl font-bold text-white mb-4">
-                                {project.title}
-                            </h2>
-                            <p id="project-modal-description" className="text-gray-300 text-sm sm:text-base leading-relaxed mb-6">
-                                {project.longDescription || project.description}
-                            </p>
-
-                            {/* Structured Challenge & Solution if present */}
-                            {project.challenge && (
-                                <div className="space-y-3 mb-6 p-4 rounded-xl bg-[#0b1329]/75 border border-blue-500/15">
-                                    <div>
-                                        <span className="font-bold text-slate-200 text-xs sm:text-sm flex items-center gap-2 mb-1">
-                                            <span className="w-2 h-2 rounded-full bg-amber-400 shrink-0"></span>
-                                            El Desafío:
-                                        </span>
-                                        <p className="text-gray-300 text-xs sm:text-sm leading-relaxed pl-4">
-                                            {project.challenge}
-                                        </p>
-                                    </div>
-                                    <div className="pt-2 border-t border-blue-500/10">
-                                        <span className="font-bold text-blue-400 text-xs sm:text-sm flex items-center gap-2 mb-1">
-                                            <span className="w-2 h-2 rounded-full bg-blue-400 shrink-0"></span>
-                                            La Solución:
-                                        </span>
-                                        <p className="text-gray-300 text-xs sm:text-sm leading-relaxed pl-4">
-                                            {project.solution}
-                                        </p>
-                                    </div>
-                                </div>
-                            )}
-
-                            <div className="mb-6">
-                                <h4 className="text-white text-xs font-semibold uppercase tracking-wider mb-2.5">Tecnologías & Enfoque</h4>
-                                <div className="flex flex-wrap gap-2">
-                                    {project.tags.map((tag, i) => (
-                                        <span key={i} className="text-xs font-medium text-blue-300 bg-[#162447] px-3 py-1 rounded-lg border border-blue-500/20">
-                                            {tag}
-                                        </span>
-                                    ))}
-                                </div>
+                            <h3 className="font-mono text-xs uppercase tracking-[0.12em] text-muted mb-3">Funcionalidades</h3>
+                            <div className="flex flex-wrap gap-2">
+                                {project.tags.map((tag) => (
+                                    <Tag key={tag}>{tag}</Tag>
+                                ))}
                             </div>
                         </div>
 
-                        {project.link ? (
-                            <a
-                                href={project.link}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex w-fit items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-blue-600 text-white font-semibold hover:bg-blue-500 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[#111c38]"
-                            >
-                                Visitar proyecto en vivo
-                                <ExternalLink className="w-4 h-4" />
-                            </a>
-                        ) : (
-                            <a
-                                href={`https://wa.me/542216430365?text=${encodeURIComponent(project.whatsappText || `Hola Juan, vi tu proyecto de ${project.title} y me gustaría consultarte por algo similar para mi negocio`)}`}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex w-fit items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-blue-600 text-white font-semibold hover:bg-blue-500 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[#111c38]"
+                        <div className="md:mt-auto flex flex-col gap-3">
+                            {project.link && (
+                                <Button href={project.link} external>
+                                    Visitar el sitio
+                                    <ExternalLink className="w-4 h-4" />
+                                </Button>
+                            )}
+                            <Button
+                                href={similarSolutionLink(project)}
+                                external
+                                variant={project.link ? 'secondary' : 'primary'}
                             >
                                 <MessageCircle className="w-4 h-4" />
-                                Consultar por una solución similar
-                            </a>
-                        )}
+                                Quiero algo similar
+                            </Button>
+                        </div>
                     </div>
                 </div>
             </motion.div>
-        </>,
+        </motion.div>,
         document.body
     );
 };

@@ -1,82 +1,65 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Mail, MessageCircle } from 'lucide-react';
+import React, { useState } from 'react';
+import { Check, Copy, MessageCircle } from 'lucide-react';
+import Button from './ui/Button';
+import Reveal from './ui/Reveal';
+import { EMAIL, WHATSAPP_DISPLAY, whatsappLink } from '../constants';
+
+const CONTACT_LINK = whatsappLink('Hola Juan, vi tu portfolio y quiero hacerte una consulta por un proyecto');
 
 const Contact = () => {
+    const [copied, setCopied] = useState(false);
+
+    const copyEmail = async () => {
+        try {
+            await navigator.clipboard.writeText(EMAIL);
+            setCopied(true);
+            window.setTimeout(() => setCopied(false), 2000);
+        } catch {
+            window.location.href = `mailto:${EMAIL}`;
+        }
+    };
+
     return (
-        <section id="contact" className="py-24 bg-[#0b1329] relative overflow-hidden">
-            {/* Background Elements */}
-            <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-                <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-500 rounded-full mix-blend-screen filter blur-[128px] opacity-5"></div>
-            </div>
+        <section id="contact" className="py-20 md:py-28 bg-ink border-t border-line/60">
+            <Reveal className="max-w-6xl mx-auto px-5 sm:px-6">
+                <p className="font-mono text-xs uppercase tracking-[0.12em] text-muted mb-4">Contacto</p>
+                <h2 className="text-5xl md:text-7xl font-extrabold tracking-[-0.03em] text-fg leading-[1.02] max-w-4xl">
+                    Hablemos de tu negocio
+                </h2>
+                <p className="mt-6 text-lg leading-relaxed text-muted max-w-2xl">
+                    Contame qué necesitás y lo analizamos juntos, sin compromiso.
+                </p>
 
-            <div className="max-w-7xl mx-auto px-6 relative z-10">
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6 }}
-                    className="max-w-4xl mx-auto text-center"
-                >
-                    {/* Header */}
-                    <div className="mb-16">
-                        <p className="text-blue-400 font-mono text-xs uppercase tracking-widest font-semibold mb-3">// 04 · CONTACTO DIRECTO</p>
-                        <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight">
-                            Hablemos de tu <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-blue-500">Negocio</span>
-                        </h2>
-                        <p className="text-gray-300 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
-                            ¿Tenés un comercio o pyme y querés dar el salto digital? Escribime directamente para analizar tu caso sin ningún compromiso.
-                        </p>
+                <div className="mt-10 flex flex-col sm:flex-row sm:items-center gap-x-8 gap-y-6">
+                    <Button href={CONTACT_LINK} external size="lg">
+                        <MessageCircle className="w-5 h-5" />
+                        Escribime por WhatsApp
+                    </Button>
+
+                    <div className="flex flex-col gap-1 text-sm">
+                        <span className="text-muted">
+                            WhatsApp <span className="font-mono text-fg">{WHATSAPP_DISPLAY}</span>
+                        </span>
+                        <span className="flex items-center gap-2 text-muted">
+                            Email
+                            <a href={`mailto:${EMAIL}`} className="font-mono text-fg hover:text-link transition-colors rounded">
+                                {EMAIL}
+                            </a>
+                            <button
+                                type="button"
+                                onClick={copyEmail}
+                                aria-label={copied ? 'Email copiado' : 'Copiar email'}
+                                className="p-1 rounded text-muted hover:text-fg transition-colors cursor-pointer"
+                            >
+                                {copied ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4" />}
+                            </button>
+                            <span role="status" className="sr-only">{copied ? 'Email copiado' : ''}</span>
+                        </span>
                     </div>
-
-                    <div className="grid md:grid-cols-2 gap-8 justify-center max-w-2xl mx-auto">
-                        {/* WhatsApp */}
-                        <ContactCard
-                            href="https://wa.me/542216430365?text=Hola%20Juan,%20vi%20tu%20portfolio%20y%20quiero%20hacerte%20una%20consulta%20por%20un%20proyecto"
-                            icon={<MessageCircle className="w-8 h-8 text-blue-400" />}
-                            title="WhatsApp"
-                            value="+54 221 643-0365"
-                            action="Escribir por WhatsApp"
-                        />
-
-                        {/* Email */}
-                        <ContactCard
-                            href="mailto:moorejuanf@gmail.com"
-                            icon={<Mail className="w-8 h-8 text-blue-400" />}
-                            title="Email"
-                            value="moorejuanf@gmail.com"
-                            action="Enviar correo"
-                        />
-                    </div>
-
-                </motion.div>
-            </div>
+                </div>
+            </Reveal>
         </section>
     );
 };
-
-const ContactCard = ({ href, icon, title, value, action }) => (
-    <motion.a
-        href={href}
-        target="_blank"
-        rel="noopener noreferrer"
-        whileHover={{ y: -5 }}
-        className="block p-8 rounded-2xl bg-[#111c38] border border-blue-500/15 hover:border-blue-500/35 hover:bg-[#162447] transition-[border-color,background-color,transform] group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b1329]"
-    >
-        <div className="flex flex-col items-center gap-4">
-            <div className="p-4 rounded-full bg-[#0b1329] border border-blue-500/20 group-hover:scale-110 transition-transform duration-300">
-                {icon}
-            </div>
-            <h3 className="text-xl font-bold text-white">{title}</h3>
-            <p className="text-gray-300 group-hover:text-white transition-colors font-mono text-sm md:text-base">
-                {value}
-            </p>
-            <span className="text-blue-400 text-sm font-semibold mt-2 flex items-center gap-2">
-                {action}
-                <span className="group-hover:translate-x-1 transition-transform">→</span>
-            </span>
-        </div>
-    </motion.a>
-);
 
 export default Contact;
