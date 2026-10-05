@@ -66,9 +66,8 @@ const secondaryProjects = [
         description: 'Catálogo digital interactivo para agilizar la toma de comandas. Genera pedidos automáticos a WhatsApp sin comisiones.',
         longDescription: 'Sistema de menú digital autogestionable que permite a los restaurantes actualizar precios y disponibilidad en tiempo real. Los clientes pueden armar su pedido escaneando un QR, personalizar ingredientes y enviar la orden directamente al WhatsApp del local con un mensaje preformateado, eliminando errores de transcripción y comisiones de apps de delivery.',
         image: '/projects/menu-qr.webp',
-        width: 800,
-        height: 800,
-        imagePosition: 'object-center',
+        width: 749,
+        height: 574,
         tags: ['Catálogo QR', 'WhatsApp API', 'Cero comisiones', 'Gestión rápida']
     },
     {
@@ -254,7 +253,7 @@ const SecondaryCard = ({ project, index, onClick }) => (
                     width={project.width}
                     height={project.height}
                     loading="lazy"
-                    className={`w-full h-full object-cover ${project.imagePosition || 'object-top'} transition-transform duration-500 group-hover:scale-[1.03]`}
+                    className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
                 />
             </div>
 
